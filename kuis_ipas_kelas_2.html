@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis IPAS - Kelas 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .question-card {
+            background-color: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .answer-textarea {
+            width: 100%;
+            min-height: 80px;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .answer-textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            outline: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+        .result-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .correct-answer {
+            background-color: #d1fae5;
+            border: 1px solid #34d399;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        
+        <!-- Bagian Kuis -->
+        <div id="quiz-section">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis IPAS</h1>
+            <p class="text-center text-gray-600 mb-8">Jawablah 20 pertanyaan di bawah ini.</p>
+
+            <form id="quiz-form">
+                <!-- Soal 1 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 1</p>
+                    <p class="text-gray-700">Matahari dapat kita lihat pada tiga waktu. Sebutkan!</p>
+                    <textarea id="q1" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 2</p>
+                    <p class="text-gray-700">Di sebelah mana matahari terbit di pagi hari?</p>
+                    <textarea id="q2" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 3</p>
+                    <p class="text-gray-700">Di sebelah mana bayang-bayang tubuh kita berada saat pagi hari?</p>
+                    <textarea id="q3" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 4 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 4</p>
+                    <p class="text-gray-700">Bagaimana bentuk bayang-bayang tubuh kita saat pagi hari?</p>
+                    <textarea id="q4" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 5 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 5</p>
+                    <p class="text-gray-700">Mengapa bayang-bayang kita terlihat sangat pendek di siang hari?</p>
+                    <textarea id="q5" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 6 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 6</p>
+                    <p class="text-gray-700">Di sebelah mana matahari terbenam di sore hari?</p>
+                    <textarea id="q6" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 7</p>
+                    <p class="text-gray-700">Saat sore hari, bayang-bayang kita akan mengarah ke sebelah...?</p>
+                    <textarea id="q7" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 8 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 8</p>
+                    <p class="text-gray-700">Sebutkan 3 contoh jenis cuaca yang kamu ketahui!</p>
+                    <textarea id="q8" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 9 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 9</p>
+                    <p class="text-gray-700">Saat cuaca cerah, apa kegiatan yang paling baik dilakukan untuk pakaian basah?</p>
+                    <textarea id="q9" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 10 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 10</p>
+                    <p class="text-gray-700">Apa ciri-ciri cuaca ketika akan turun hujan?</p>
+                    <textarea id="q10" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 11 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 11</p>
+                    <p class="text-gray-700">Apa bencana alam yang bisa timbul jika hujan turun terus-menerus?</p>
+                    <textarea id="q11" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 12 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 12</p>
+                    <p class="text-gray-700">Apa nama lembaga di Indonesia yang memberikan informasi perkiraan cuaca?</p>
+                    <textarea id="q12" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 13 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 13</p>
+                    <p class="text-gray-700">Apa kepanjangan dari BMKG?</p>
+                    <textarea id="q13" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 14 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 14</p>
+                    <p class="text-gray-700">Mengapa perkiraan cuaca penting untuk transportasi laut (kapal) dan udara (pesawat)?</p>
+                    <textarea id="q14" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 15 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 15</p>
+                    <p class="text-gray-700">Apa saja yang termasuk dalam identitas diri?</p>
+                    <textarea id="q15" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 16 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 16</p>
+                    <p class="text-gray-700">Apa nama dokumen identitas yang wajib dimiliki orang yang sudah berusia 17 tahun?</p>
+                    <textarea id="q16" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 17 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 17</p>
+                    <p class="text-gray-700">Apa kepanjangan dari KTP?</p>
+                    <textarea id="q17" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 18 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 18</p>
+                    <p class="text-gray-700">Sebutkan 2 dokumen penting yang biasanya disimpan ayah di dompet selain KTP!</p>
+                    <textarea id="q18" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 19 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 19</p>
+                    <p class="text-gray-700">Apa kepanjangan dari SIM?</p>
+                    <textarea id="q19" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 20 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 20</p>
+                    <p class="text-gray-700">Mengapa kita harus menjaga identitas diri dan tidak memberikannya ke sembarang orang?</p>
+                    <textarea id="q20" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <button type="button" id="submit-button" class="submit-btn">
+                    Selesai! Lihat Kunci Jawaban
+                </button>
+            </form>
+        </div>
+
+        <!-- Bagian Hasil -->
+        <div id="result-section" class="hidden">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
+            <p class="text-center text-gray-600 mb-8">Kerja bagus! Minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini.</p>
+
+            <!-- Loop Hasil 1-20 -->
+            <script>
+                // Data Kunci Jawaban
+                const correctAnswers = {
+                    r1: "Pagi, siang, dan sore hari.",
+                    r2: "Sebelah timur.",
+                    r3: "Sebelah barat.",
+                    r4: "Memanjang.",
+                    r5: "Karena matahari berada hampir tepat di atas kepala kita.",
+                    r6: "Sebelah barat.",
+                    r7: "Sebelah timur.",
+                    r8: "Cerah, berawan, hujan, hujan petir.",
+                    r9: "Menjemur pakaian.",
+                    r10: "Langit tampak gelap, banyak awan gelap, angin kencang.",
+                    r11: "Banjir.",
+                    r12: "BMKG.",
+                    r13: "Badan Meteorologi, Klimatologi dan Geofisika.",
+                    r14: "Karena jika cuaca buruk, penerbangan atau pelayaran harus ditunda agar aman.",
+                    r15: "Nama, tempat tanggal lahir, dan alamat.",
+                    r16: "KTP (Kartu Tanda Penduduk).",
+                    r17: "Kartu Tanda Penduduk.",
+                    r18: "SIM dan STNK.",
+                    r19: "Surat Izin Mengemudi.",
+                    r20: "Agar aman dan tidak disalahgunakan orang lain."
+                };
+
+                // Data Pertanyaan
+                const questions = {
+                    q1: "Matahari dapat kita lihat pada tiga waktu. Sebutkan!",
+                    q2: "Di sebelah mana matahari terbit di pagi hari?",
+                    q3: "Di sebelah mana bayang-bayang tubuh kita berada saat pagi hari?",
+                    q4: "Bagaimana bentuk bayang-bayang tubuh kita saat pagi hari?",
+                    q5: "Mengapa bayang-bayang kita terlihat sangat pendek di siang hari?",
+                    q6: "Di sebelah mana matahari terbenam di sore hari?",
+                    q7: "Saat sore hari, bayang-bayang kita akan mengarah ke sebelah...?",
+                    q8: "Sebutkan 3 contoh jenis cuaca yang kamu ketahui!",
+                    q9: "Saat cuaca cerah, apa kegiatan yang paling baik dilakukan untuk pakaian basah?",
+                    q10: "Apa ciri-ciri cuaca ketika akan turun hujan?",
+                    q11: "Apa bencana alam yang bisa timbul jika hujan turun terus-menerus?",
+                    q12: "Apa nama lembaga di Indonesia yang memberikan informasi perkiraan cuaca?",
+                    q13: "Apa kepanjangan dari BMKG?",
+                    q14: "Mengapa perkiraan cuaca penting untuk transportasi laut (kapal) dan udara (pesawat)?",
+                    q15: "Apa saja yang termasuk dalam identitas diri?",
+                    q16: "Apa nama dokumen identitas yang wajib dimiliki orang yang sudah berusia 17 tahun?",
+                    q17: "Apa kepanjangan dari KTP?",
+                    q18: "Sebutkan 2 dokumen penting yang biasanya disimpan ayah di dompet selain KTP!",
+                    q19: "Apa kepanjangan dari SIM?",
+                    q20: "Mengapa kita harus menjaga identitas diri dan tidak memberikannya ke sembarang orang?"
+                };
+
+                // Generate 20 result cards
+                for (let i = 1; i <= 20; i++) {
+                    document.write(`
+                        <div class="result-card">
+                            <p class="text-lg font-semibold mb-2">Soal ${i}</p>
+                            <p class="text-gray-700 mb-3">${questions['q'+i]}</p>
+                            <p class="text-gray-700 font-medium">Jawabanmu:</p>
+                            <textarea id="r${i}" class="answer-textarea" readonly disabled style="background-color: #f9fafb;"></textarea>
+                            <div class="correct-answer">
+                                Kunci Jawaban: ${correctAnswers['r'+i]}
+                            </div>
+                        </div>
+                    `);
+                }
+            </script>
+            
+            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
+                Ulangi Kuis
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function() {
+            // Salin 20 jawaban ke bagian hasil
+            for (let i = 1; i <= 20; i++) {
+                document.getElementById('r' + i).value = document.getElementById('q' + i).value;
+            }
+
+            // Tampilkan hasil, tapi JANGAN sembunyikan kuis
+            document.getElementById('result-section').classList.remove('hidden');
+            
+            // Nonaktifkan semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = true;
+                textarea.style.backgroundColor = '#f9fafb'; // Ubah warna latar
+            });
+            
+            // Sembunyikan tombol submit
+            document.getElementById('submit-button').classList.add('hidden');
+
+            // Gulir ke bagian hasil
+            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('restart-button').addEventListener('click', function() {
+            // Kosongkan semua jawaban
+            for (let i = 1; i <= 20; i++) {
+                document.getElementById('q' + i).value = '';
+                document.getElementById('r' + i).value = '';
+            }
+
+            // Sembunyikan hasil
+            document.getElementById('result-section').classList.add('hidden');
+
+            // Aktifkan kembali semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = false;
+                textarea.style.backgroundColor = '#ffffff'; // Kembalikan warna
+            });
+
+            // Tampilkan kembali tombol submit
+            document.getElementById('submit-button').classList.remove('hidden');
+            
+            // Gulir ke atas
+            window.scrollTo(0, 0);
+        });
+    </script>
+
+</body>
+</html>
