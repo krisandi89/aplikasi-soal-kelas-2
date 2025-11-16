@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Latihan Soal Musa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto max-w-4xl px-4 py-12">
+        <!-- Judul Utama -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800">Latihan Soal Musa</h1>
+            <h2 class="text-2xl font-semibold text-blue-600">Kelas 2</h2>
+        </div>
+
+        <!-- Grid Kartu Mata Pelajaran -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+            <!-- Card 1: Bahasa Indonesia (Non-aktif) -->
+            <a href="#" class="subject-card-inactive" title="Soal belum tersedia">
+                <div class="text-5xl mb-3">📝</div>
+                <span class="text-lg font-semibold text-gray-700">Bahasa Indonesia</span>
+            </a>
+
+            <!-- Card 2: Pendidikan Pancasila (Non-aktif) -->
+            <a href="#" class="subject-card-inactive" title="Soal belum tersedia">
+                <div class="text-5xl mb-3">🇮🇩</div>
+                <span class="text-lg font-semibold text-gray-700">Pendidikan Pancasila</span>
+            </a>
+            
+            <!-- Card 3: IPAS (Non-aktif) -->
+            <a href="#" class="subject-card-inactive" title="Soal belum tersedia">
+                <div class="text-5xl mb-3">🔬</div>
+                <span class="text-lg font-semibold text-gray-700">IPAS</span>
+            </a>
+
+            <!-- Card 4: PAI (Non-aktif) -->
+            <a href="#" class="subject-card-inactive" title="Soal belum tersedia">
+                <div class="text-5xl mb-3">🕌</div>
+                <span class="text-lg font-semibold text-gray-700">PAI</span>
+            </a>
+
+            <!-- Card 5: Matematika (AKTIF) -->
+            <a href="kuis_matematika_kelas_2.html" class="subject-card-active">
+                <div class="text-5xl mb-3">🧮</div>
+                <span class="text-lg font-semibold text-gray-700">Matematika</span>
+            </a>
+
+            <!-- Card 6: Seni Budaya (Non-aktif) -->
+            <a href="#" class="subject-card-inactive" title="Soal belum tersedia">
+                <div class="text-5xl mb-3">🎨</div>
+                <span class="text-lg font-semibold text-gray-700">Seni Budaya</span>
+            </a>
+
+            <!-- Card 7: Siroh Nabawiyah (Non-aktif) -->
+            <a href="#" class="subject-card-inactive" title="Soal belum tersedia">
+                <div class="text-5xl mb-3">🌙</div>
+                <span class="text-lg font-semibold text-gray-700">Siroh Nabawiyah</span>
+            </a>
+
+            <!-- Card 8: Bahasa Inggris (Non-aktif) -->
+            <a href="#" class="subject-card-inactive" title="Soal belum tersedia">
+                <div class="text-5xl mb-3">🇬🇧</div>
+                <span class="text-lg font-semibold text-gray-700">Bahasa Inggris</span>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- 
+        Kita menggunakan class utility dari Tailwind untuk styling.
+        Saya membuat 2 style kustom untuk kartu aktif dan non-aktif 
+        agar lebih mudah dibedakan.
+    -->
+    <style>
+        .subject-card-base {
+            display: block;
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            transition-property: all;
+            transition-duration: 300ms;
+            text-align: center;
+        }
+
+        .subject-card-active {
+            @apply subject-card-base;
+            background-color: #ffffff; /* bg-white */
+        }
+        .subject-card-active:hover {
+            transform: scale(1.05); /* hover:scale-105 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-lg */
+            background-color: #f3f4f6; /* hover:bg-gray-100 */
+        }
+
+        .subject-card-inactive {
+            @apply subject-card-base;
+            background-color: #f3f4f6; /* bg-gray-100 */
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    </style>
+
+</body>
+</html>
