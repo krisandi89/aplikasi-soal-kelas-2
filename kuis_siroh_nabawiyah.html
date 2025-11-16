@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Siroh Nabawiyah - Kelas 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .question-card {
+            background-color: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .answer-textarea {
+            width: 100%;
+            min-height: 80px;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .answer-textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            outline: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+        .result-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .correct-answer {
+            background-color: #d1fae5;
+            border: 1px solid #34d399;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        
+        <!-- Bagian Kuis -->
+        <div id="quiz-section">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis Siroh Nabawiyah</h1>
+            <p class="text-center text-gray-600 mb-8">Jawablah 20 pertanyaan di bawah ini.</p>
+
+            <form id="quiz-form">
+                <!-- Soal 1 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 1</p>
+                    <p class="text-gray-700">Apa sebutan lain untuk Baiat Aqabah Kedua?</p>
+                    <textarea id="q1" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 2</p>
+                    <p class="text-gray-700">Berapa banyak pemimpin yang ditunjuk Nabi Muhammad SAW setelah Baiat Aqabah Kedua?</p>
+                    <textarea id="q2" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 3</p>
+                    <p class="text-gray-700">Apa rencana jahat yang dibuat kaum Quraisy terhadap Nabi Muhammad SAW?</p>
+                    <textarea id="q3" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 4 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 4</p>
+                    <p class="text-gray-700">Siapa yang memberitahu Nabi Muhammad SAW tentang rencana jahat kaum Quraisy?</p>
+                    <textarea id="q4" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 5 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 5</p>
+                    <p class="text-gray-700">Siapa sahabat yang diminta untuk menemani Nabi Muhammad SAW hijrah?</p>
+                    <textarea id="q5" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 6 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 6</p>
+                    <p class="text-gray-700">Siapa yang menggantikan Nabi Muhammad SAW tidur di tempat tidurnya saat rumah beliau dikepung?</p>
+                    <textarea id="q6" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 7</p>
+                    <p class="text-gray-700">Apa yang dipakai Ali bin Abi Thalib saat tidur di tempat tidur Nabi?</p>
+                    <textarea id="q7" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 8 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 8</p>
+                    <p class="text-gray-700">Bagaimana cara Nabi Muhammad SAW keluar dari rumahnya yang sudah dikepung kaum Quraisy?</p>
+                    <textarea id="q8" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 9 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 9</p>
+                    <p class="text-gray-700">Ke mana Nabi Muhammad SAW dan Abu Bakar pergi bersembunyi setelah keluar dari rumah?</p>
+                    <textarea id="q9" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 10 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 10</p>
+                    <p class="text-gray-700">Di gua apakah Nabi Muhammad SAW dan Abu Bakar bersembunyi?</p>
+                    <textarea id="q10" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 11 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 11</p>
+                    <p class="text-gray-700">Pada tanggal berapakah Nabi Muhammad SAW tiba di Quba?</p>
+                    <textarea id="q11" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 12 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 12</p>
+                    <p class="text-gray-700">Apa nama masjid pertama yang dibangun oleh Nabi Muhammad SAW?</p>
+                    <textarea id="q12" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 13 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 13</p>
+                    <p class="text-gray-700">Berapa lama Nabi Muhammad SAW berada di Quba?</p>
+                    <textarea id="q13" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 14 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 14</p>
+                    <p class="text-gray-700">Apa nama kota Yastrib setelah Nabi Muhammad SAW tiba?</p>
+                    <textarea id="q14" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 15 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 15</p>
+                    <p class="text-gray-700">Bagaimana cara Nabi Muhammad SAW memutuskan di mana beliau akan tinggal di Madinah?</p>
+                    <textarea id="q15" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 16 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 16</p>
+                    <p class="text-gray-700">Apa nama masjid yang dibangun Nabi Muhammad SAW di Madinah?</p>
+                    <textarea id="q16" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 17 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 17</p>
+                    <p class="text-gray-700">Dari siapa tanah untuk Masjid Nabawi dibeli?</p>
+                    <textarea id="q17" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 18 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 18</p>
+                    <p class="text-gray-700">Sebutkan nama istri dan putri Nabi yang menyusul hijrah ke Madinah.</p>
+                    <textarea id="q18" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 19 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 19</p>
+                    <p class="text-gray-700">Siapa sahabat yang jatuh sakit demam ketika baru tiba di Madinah?</p>
+                    <textarea id="q19" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 20 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 20</p>
+                    <p class="text-gray-700">Selain untuk salat, apa kegunaan Masjid Nabawi pada zaman itu?</p>
+                    <textarea id="q20" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <button type="button" id="submit-button" class="submit-btn">
+                    Selesai! Lihat Kunci Jawaban
+                </button>
+            </form>
+        </div>
+
+        <!-- Bagian Hasil -->
+        <div id="result-section" class="hidden">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
+            <p class="text-center text-gray-600 mb-8">Kerja bagus! Minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini.</p>
+
+            <!-- Loop Hasil 1-20 -->
+            <script>
+                // Data Kunci Jawaban
+                const correctAnswers = {
+                    r1: "Baiat Aqabah Kubra.",
+                    r2: "12 (Dua belas) orang pemimpin.",
+                    r3: "Membunuh Nabi Muhammad SAW.",
+                    r4: "Malaikat Jibril.",
+                    r5: "Abu Bakar Ash-Shiddiq.",
+                    r6: "Ali bin Abi Thalib.",
+                    r7: "Mantel hijau yang biasa dipakai Nabi Muhammad SAW.",
+                    r8: "Menaburkan pasir ke kepala orang-orang Quraisy (dengan izin Allah).",
+                    r9: "Pergi ke rumah Abu Bakar, lalu bersembunyi.",
+                    r10: "Gua Tsaur (Cave of Thaur).",
+                    r11: "Tanggal 8 Rabiulawal.",
+                    r12: "Masjid Quba.",
+                    r13: "Empat hari.",
+                    r14: "Madinatur Rasul (Kota Rasul) atau Madinah.",
+                    r15: "Beliau membiarkan untanya berjalan, dan akan singgah di tempat untanya berhenti.",
+                    r16: "Masjid Nabawi.",
+                    r17: "Dari dua anak yatim, Sahal dan Suhail.",
+                    r18: "Istri: Saudah. Putri: Fatimah dan Ummu Kultsum.",
+                    r19: "Bilal dan Abu Bakar.",
+                    r20: "Tempat bermusyawarah dan menjalankan pemerintahan."
+                };
+
+                // Data Pertanyaan (BARU DITAMBAHKAN)
+                const questions = {
+                    q1: "Apa sebutan lain untuk Baiat Aqabah Kedua?",
+                    q2: "Berapa banyak pemimpin yang ditunjuk Nabi Muhammad SAW setelah Baiat Aqabah Kedua?",
+                    q3: "Apa rencana jahat yang dibuat kaum Quraisy terhadap Nabi Muhammad SAW?",
+                    q4: "Siapa yang memberitahu Nabi Muhammad SAW tentang rencana jahat kaum Quraisy?",
+                    q5: "Siapa sahabat yang diminta untuk menemani Nabi Muhammad SAW hijrah?",
+                    q6: "Siapa yang menggantikan Nabi Muhammad SAW tidur di tempat tidurnya saat rumah beliau dikepung?",
+                    q7: "Apa yang dipakai Ali bin Abi Thalib saat tidur di tempat tidur Nabi?",
+                    q8: "Bagaimana cara Nabi Muhammad SAW keluar dari rumahnya yang sudah dikepung kaum Quraisy?",
+                    q9: "Ke mana Nabi Muhammad SAW dan Abu Bakar pergi bersembunyi setelah keluar dari rumah?",
+                    q10: "Di gua apakah Nabi Muhammad SAW dan Abu Bakar bersembunyi?",
+                    q11: "Pada tanggal berapakah Nabi Muhammad SAW tiba di Quba?",
+                    q12: "Apa nama masjid pertama yang dibangun oleh Nabi Muhammad SAW?",
+                    q13: "Berapa lama Nabi Muhammad SAW berada di Quba?",
+                    q14: "Apa nama kota Yastrib setelah Nabi Muhammad SAW tiba?",
+                    q15: "Bagaimana cara Nabi Muhammad SAW memutuskan di mana beliau akan tinggal di Madinah?",
+                    q16: "Apa nama masjid yang dibangun Nabi Muhammad SAW di Madinah?",
+                    q17: "Dari siapa tanah untuk Masjid Nabawi dibeli?",
+                    q18: "Sebutkan nama istri dan putri Nabi yang menyusul hijrah ke Madinah.",
+                    q19: "Siapa sahabat yang jatuh sakit demam ketika baru tiba di Madinah?",
+                    q20: "Selain untuk salat, apa kegunaan Masjid Nabawi pada zaman itu?"
+                };
+
+                // Generate 20 result cards
+                for (let i = 1; i <= 20; i++) {
+                    document.write(`
+                        <div class="result-card">
+                            <p class="text-lg font-semibold mb-2">Soal ${i}</p>
+                            <p class="text-gray-700 mb-3">${questions['q'+i]}</p> <!-- BARIS INI DIPERBAIKI -->
+                            <p class="text-gray-700 font-medium">Jawabanmu:</p>
+                            <textarea id="r${i}" class="answer-textarea" readonly disabled style="background-color: #f9fafb;"></textarea>
+                            <div class="correct-answer">
+                                Kunci Jawaban: ${correctAnswers['r'+i]}
+                            </div>
+                        </div>
+                    `);
+                }
+            </script>
+            
+            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
+                Ulangi Kuis
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function() {
+            // Salin 20 jawaban ke bagian hasil
+            for (let i = 1; i <= 20; i++) {
+                document.getElementById('r' + i).value = document.getElementById('q' + i).value;
+            }
+
+            // Tampilkan hasil, tapi JANGAN sembunyikan kuis
+            // document.getElementById('quiz-section').classList.add('hidden'); // <-- Baris ini dihapus/dikomentari
+            document.getElementById('result-section').classList.remove('hidden');
+            
+            // Nonaktifkan semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = true;
+                textarea.style.backgroundColor = '#f9fafb'; // Ubah warna latar
+            });
+            
+            // Sembunyikan tombol submit
+            document.getElementById('submit-button').classList.add('hidden');
+
+            // Gulir ke bagian hasil
+            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('restart-button').addEventListener('click', function() {
+            // Kosongkan semua jawaban
+            for (let i = 1; i <= 20; i++) {
+                document.getElementById('q' + i).value = '';
+                document.getElementById('r' + i).value = '';
+            }
+
+            // Sembunyikan hasil
+            // document.getElementById('quiz-section').classList.remove('hidden'); // <-- Baris ini dihapus/dikomentari
+            document.getElementById('result-section').classList.add('hidden');
+
+            // Aktifkan kembali semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = false;
+                textarea.style.backgroundColor = '#ffffff'; // Kembalikan warna
+            });
+
+            // Tampilkan kembali tombol submit
+            document.getElementById('submit-button').classList.remove('hidden');
+            
+            // Gulir ke atas
+            window.scrollTo(0, 0);
+        });
+    </script>
+
+</body>
+</html>
