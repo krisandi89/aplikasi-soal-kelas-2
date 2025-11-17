@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Kuis Seni Budaya - Kelas 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .question-card {
+            background-color: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .question-svg {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem auto;
+            display: block;
+            border: 1px solid #eee;
+            border-radius: 0.5rem;
+            padding: 10px;
+        }
+        .answer-textarea {
+            width: 100%;
+            min-height: 80px;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .answer-textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            outline: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+        .result-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .correct-answer {
+            background-color: #d1fae5;
+            border: 1px solid #34d399;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        
+        <!-- Bagian Kuis -->
+        <div id="quiz-section">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis Seni Budaya</h1>
+            <p class="text-center text-gray-600 mb-8">Jawablah 15 pertanyaan di bawah ini.</p>
+
+            <form id="quiz-form">
+                <!-- Soal 1 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 1</p>
+                    <p class="text-gray-700">Ide dasar dalam sebuah tarian disebut sebagai...</p>
+                    <textarea id="q1" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 2</p>
+                    <p class="text-gray-700">Apa perbedaan antara gerak di tempat dan gerak berpindah tempat?</p>
+                    <textarea id="q2" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 3</p>
+                    <p class="text-gray-700">Tarian yang memiliki kesan semangat dan gembira biasanya menggunakan gerak...</p>
+                    <textarea id="q3" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 4 (Gambar) -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 4</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Head -->
+                        <circle cx="50" cy="30" r="10" fill="none" stroke="#000" stroke-width="2"/>
+                        <!-- Body -->
+                        <line x1="50" y1="40" x2="50" y2="60" stroke="#000" stroke-width="2"/>
+                        <!-- Arms -->
+                        <line x1="50" y1="45" x2="30" y2="35" stroke="#000" stroke-width="2"/>
+                        <line x1="50" y1="45" x2="70" y2="35" stroke="#000" stroke-width="2"/>
+                        <!-- Legs (Squatting) -->
+                        <line x1="50" y1="60" x2="35" y2="75" stroke="#000" stroke-width="2"/>
+                        <line x1="35" y1="75" x2="35" y2="85" stroke="#000" stroke-width="2"/>
+                        <line x1="50" y1="60" x2="65" y2="75" stroke="#000" stroke-width="2"/>
+                        <line x1="65" y1="75" x2="65" y2="85" stroke="#000" stroke-width="2"/>
+                    </svg>
+                    <p class="text-gray-700">Gerakan jongkok seperti pada gambar termasuk dalam tingkatan tari...</p>
+                    <textarea id="q4" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 5 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 5</p>
+                    <p class="text-gray-700">Sebutkan satu contoh gerak tari yang lemah!</p>
+                    <textarea id="q5" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 6 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 6</p>
+                    <p class="text-gray-700">Cepat atau lambatnya sebuah gerakan tari disebut...</p>
+                    <textarea id="q6" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 7</p>
+                    <p class="text-gray-700">Lamanya waktu sebuah tarian berlangsung (dari awal sampai akhir) disebut...</p>
+                    <textarea id="q7" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 8 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 8</p>
+                    <p class="text-gray-700">Gerakan tari yang lambat biasanya diiringi oleh musik yang bertempo...</p>
+                    <textarea id="q8" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 9 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 9</p>
+                    <p class="text-gray-700">Tahapan mencoba dan mencari berbagai jenis gerak tari yang sesuai dengan tema disebut...</p>
+                    <textarea id="q9" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 10 (Gambar) -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 10</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Person -->
+                        <circle cx="20" cy="50" r="8" fill="none" stroke="#000" stroke-width="2"/>
+                        <line x1="20" y1="58" x2="20" y2="78" stroke="#000" stroke-width="2"/>
+                        <line x1="20" y1="65" x2="15" y2="70" stroke="#000" stroke-width="2"/>
+                        <line x1="20" y1="78" x2="15" y2="88" stroke="#000" stroke-width="2"/>
+                        <line x1="20" y1="78" x2="25" y2="88" stroke="#000" stroke-width="2"/>
+                        <!-- Path -->
+                        <path d="M30 85 L 45 65 L 60 85 L 75 65 L 90 85" fill="none" stroke="#000" stroke-width="2" stroke-dasharray="4"/>
+                    </svg>
+                    <p class="text-gray-700">Arah gerak yang ditunjukkan oleh garis putus-putus di atas adalah...</p>
+                    <textarea id="q10" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 11 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 11</p>
+                    <p class="text-gray-700">Apa yang dimaksud dengan pantomim?</p>
+                    <textarea id="q11" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 12 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 12</p>
+                    <p class="text-gray-700">Seni pertunjukan drama yang dilakukan di atas panggung disebut...</p>
+                    <textarea id="q12" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 13 (Gambar) -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 13</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Person -->
+                        <circle cx="50" cy="40" r="10" fill="none" stroke="#000" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="50" y2="70" stroke="#000" stroke-width="2"/>
+                        <line x1="50" y1="70" x2="40" y2="90" stroke="#000" stroke-width="2"/>
+                        <line x1="50" y1="70" x2="60" y2="90" stroke="#000" stroke-width="2"/>
+                        <!-- Arms pulling -->
+                        <line x1="50" y1="55" x2="70" y2="60" stroke="#000" stroke-width="2"/>
+                        <line x1="70" y1="60" x2="65" y2="55" stroke="#000" stroke-width="2"/>
+                        <line x1="50" y1="60" x2="80" y2="65" stroke="#000" stroke-width="2"/>
+                        <line x1="80" y1="65" x2="75" y2="60" stroke="#000" stroke-width="2"/>
+                        <!-- Rope -->
+                        <line x1="70" y1="60" x2="100" y2="70" stroke="#000" stroke-width="2" stroke-dasharray="3"/>
+                        <line x1="80" y1="65" x2="100" y2="75" stroke="#000" stroke-width="2" stroke-dasharray="3"/>
+                    </svg>
+                    <p class="text-gray-700">Gerakan pantomim pada gambar di atas menirukan kegiatan...</p>
+                    <textarea id="q13" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 14 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 14</p>
+                    <p class="text-gray-700">Sebutkan 2 contoh gerak dasar wajah untuk melatih kelenturan otot wajah!</p>
+                    <textarea id="q14" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 15 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 15</p>
+                    <p class="text-gray-700">Sebutkan 3 bagian dalam sebuah percakapan atau dialog!</p>
+                    <textarea id="q15" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <button type="button" id="submit-button" class="submit-btn">
+                    Selesai! Lihat Kunci Jawaban
+                </button>
+            </form>
+        </div>
+
+        <!-- Bagian Hasil -->
+        <div id="result-section" class="hidden">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
+            <p class="text-center text-gray-600 mb-8">Kerja bagus! Minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini.</p>
+
+            <!-- Loop Hasil 1-15 -->
+            <script>
+                // Data Kunci Jawaban
+                const correctAnswers = {
+                    r1: "Tema (Ide dasar atau gagasan pokok tarian).",
+                    r2: "Gerak di tempat tidak berpindah, gerak berpindah tempat membuat penari pindah posisi.",
+                    r3: "Gerak kuat (bertenaga).",
+                    r4: "Tingkatan rendah.",
+                    r5: "Menyapu / Mengayunkan tangan / Gerak yang tenang.",
+                    r6: "Tempo.",
+                    r7: "Durasi.",
+                    r8: "Tempo lambat.",
+                    r9: "Eksplorasi.",
+                    r10: "Berliku atau zig-zag.",
+                    r11: "Pertunjukan yang meniru gerakan wajah dan tubuh tanpa berkata-kata.",
+                    r12: "Seni Teater.",
+                    r13: "Menarik tambang.",
+                    r14: "Wajah senang / sedih / marah / terkejut / kesal / tertawa (atau mengucapkan A,I,U,E,O).",
+                    r15: "Perkenalan, Pertemuan (isi), dan Perpisahan."
+                };
+
+                // Data Pertanyaan
+                const questions = {
+                    q1: "Ide dasar dalam sebuah tarian disebut sebagai...",
+                    q2: "Apa perbedaan antara gerak di tempat dan gerak berpindah tempat?",
+                    q3: "Tarian yang memiliki kesan semangat dan gembira biasanya menggunakan gerak...",
+                    q4: "Gerakan jongkok seperti pada gambar termasuk dalam tingkatan tari...",
+                    q5: "Sebutkan satu contoh gerak tari yang lemah!",
+                    q6: "Cepat atau lambatnya sebuah gerakan tari disebut...",
+                    q7: "Lamanya waktu sebuah tarian berlangsung (dari awal sampai akhir) disebut...",
+                    q8: "Gerakan tari yang lambat biasanya diiringi oleh musik yang bertempo...",
+                    q9: "Tahapan mencoba dan mencari berbagai jenis gerak tari yang sesuai dengan tema disebut...",
+                    q10: "Arah gerak yang ditunjukkan oleh garis putus-putus di atas adalah...",
+                    q11: "Apa yang dimaksud dengan pantomim?",
+                    q12: "Seni pertunjukan drama yang dilakukan di atas panggung disebut...",
+                    q13: "Gerakan pantomim pada gambar di atas menirukan kegiatan...",
+                    q14: "Sebutkan 2 contoh gerak dasar wajah untuk melatih kelenturan otot wajah!",
+                    q15: "Sebutkan 3 bagian dalam sebuah percakapan atau dialog!"
+                };
+
+                // Generate 15 result cards
+                for (let i = 1; i <= 15; i++) {
+                    document.write(`
+                        <div class="result-card">
+                            <p class="text-lg font-semibold mb-2">Soal ${i}</p>
+                            <p class="text-gray-700 mb-3">${questions['q'+i]}</p>
+                            <p class="text-gray-700 font-medium">Jawabanmu:</p>
+                            <textarea id="r${i}" class="answer-textarea" readonly disabled style="background-color: #f9fafb;"></textarea>
+                            <div class="correct-answer">
+                                Kunci Jawaban: ${correctAnswers['r'+i]}
+                            </div>
+                        </div>
+                    `);
+                }
+            </script>
+            
+            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
+                Ulangi Kuis
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function() {
+            // Salin 15 jawaban ke bagian hasil
+            for (let i = 1; i <= 15; i++) {
+                document.getElementById('r' + i).value = document.getElementById('q' + i).value;
+            }
+
+            // Tampilkan hasil, tapi JANGAN sembunyikan kuis
+            document.getElementById('result-section').classList.remove('hidden');
+            
+            // Nonaktifkan semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = true;
+                textarea.style.backgroundColor = '#f9fafb'; // Ubah warna latar
+            });
+            
+            // Sembunyikan tombol submit
+            document.getElementById('submit-button').classList.add('hidden');
+
+            // Gulir ke bagian hasil
+            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('restart-button').addEventListener('click', function() {
+            // Kosongkan semua jawaban
+            for (let i = 1; i <= 15; i++) {
+                document.getElementById('q' + i).value = '';
+                document.getElementById('r' + i).value = '';
+            }
+
+            // Sembunyikan hasil
+            document.getElementById('result-section').classList.add('hidden');
+
+            // Aktifkan kembali semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = false;
+                textarea.style.backgroundColor = '#ffffff'; // Kembalikan warna
+            });
+
+            // Tampilkan kembali tombol submit
+            document.getElementById('submit-button').classList.remove('hidden');
+            
+            // Gulir ke atas
+            window.scrollTo(0, 0);
+        });
+    </script>
+
+</body>
+</html>
