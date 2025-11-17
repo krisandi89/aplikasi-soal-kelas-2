@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Bahasa Indonesia - Kelas 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .question-card {
+            background-color: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .question-svg {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem auto;
+            display: block;
+            border: 1px solid #eee;
+            border-radius: 0.5rem;
+            padding: 10px;
+        }
+        .answer-textarea {
+            width: 100%;
+            min-height: 80px;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .answer-textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            outline: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+        .result-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .correct-answer {
+            background-color: #d1fae5;
+            border: 1px solid #34d399;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        
+        <!-- Bagian Kuis -->
+        <div id="quiz-section">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis Bahasa Indonesia</h1>
+            <p class="text-center text-gray-600 mb-8">Jawablah 15 pertanyaan di bawah ini.</p>
+
+            <form id="quiz-form">
+                <!-- Soal 1 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 1</p>
+                    <p class="text-gray-700">Apa nama tanda baca (!) yang digunakan di akhir kalimat perintah?</p>
+                    <textarea id="q1" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 2</p>
+                    <p class="text-gray-700">Buatlah satu contoh kalimat *ajakan* yang diakhiri tanda seru!</p>
+                    <textarea id="q2" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 3</p>
+                    <p class="text-gray-700">Buatlah satu contoh kalimat *larangan* yang diakhiri tanda seru!</p>
+                    <textarea id="q3" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 4 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 4</p>
+                    <p class="text-gray-700">Apa yang dimaksud dengan "Titik Kumpul" yang ada di sekolah?</p>
+                    <textarea id="q4" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 5 (Gambar) -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 5</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="10" width="80" height="80" fill="#22c55e" rx="5"/>
+                        <!-- Arrows -->
+                        <path d="M20 30 L 30 20 L 40 30" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M60 30 L 70 20 L 80 30" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20 70 L 30 80 L 40 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M60 70 L 70 80 L 80 70" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- People -->
+                        <circle cx="50" cy="40" r="5" fill="#fff"/>
+                        <rect x="45" y="45" width="10" height="15" fill="#fff"/>
+                        <circle cx="35" cy="50" r="5" fill="#fff"/>
+                        <rect x="30" y="55" width="10" height="15" fill="#fff"/>
+                        <circle cx="65" cy="50" r="5" fill="#fff"/>
+                        <rect x="60" y="55" width="10" height="15" fill="#fff"/>
+                    </svg>
+                    <p class="text-gray-700">Apa arti dari rambu "Titik Kumpul" (Assembly Point) pada gambar di atas?</p>
+                    <textarea id="q5" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 6 (Gambar) -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 6</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Gunting -->
+                        <circle cx="35" cy="35" r="10" fill="none" stroke="#000" stroke-width="3"/>
+                        <circle cx="65" cy="35" r="10" fill="none" stroke="#000" stroke-width="3"/>
+                        <line x1="45" y1="40" x2="70" y2="80" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="55" y1="40" x2="30" y2="80" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <p class="text-gray-700">Perhatikan gambar gunting. Mengapa gunting termasuk benda berbahaya yang tidak boleh dimainkan?</p>
+                    <textarea id="q6" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 7</p>
+                    <p class="text-gray-700">Sebutkan satu cara menjaga keselamatan di rumah saat menggunakan barang elektronik (contoh: mesin cuci, televisi)!</p>
+                    <textarea id="q7" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 8 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 8</p>
+                    <p class="text-gray-700">Perbaiki kalimat ini dengan huruf kapital yang benar: <br> `paman beni datang pada hari minggu.`</p>
+                    <textarea id="q8" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 9 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 9</p>
+                    <p class="text-gray-700">Sebutkan 2 (dua) kegunaan huruf kapital (huruf besar)!</p>
+                    <textarea id="q9" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 10 (Gambar) -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 10</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Museum -->
+                        <rect x="15" y="40" width="70" height="50" fill="#f7f1e3" stroke="#000" stroke-width="2"/>
+                        <polygon points="15,40 50,20 85,40" fill="#dcdde1" stroke="#000" stroke-width="2"/>
+                        <rect x="40" y="55" width="20" height="35" fill="#7f8c8d" stroke="#000" stroke-width="2"/>
+                        <rect x="25" y="55" width="10" height="20" fill="#7f8c8d" stroke="#000" stroke-width="2"/>
+                        <rect x="65" y="55" width="10" height="20" fill="#7f8c8d" stroke="#000" stroke-width="2"/>
+                    </svg>
+                    <p class="text-gray-700">Apa nama tempat umum pada gambar di atas?</p>
+                    <textarea id="q10" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <!-- Soal 11 (Gambar) -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 11</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Stadion -->
+                        <ellipse cx="50" cy="80" rx="45" ry="15" fill="#bdc3c7" stroke="#000" stroke-width="2"/>
+                        <path d="M10 80 C 20 60, 80 60, 90 80" fill="#ecf0f1" stroke="#000" stroke-width="2"/>
+                        <path d="M20 65 C 30 50, 70 50, 80 65" fill="#ecf0f1" stroke="#000" stroke-width="2"/>
+                        <rect x="30" y="20" width="40" height="30" fill="#3498db" stroke="#000" stroke-width="2"/>
+                    </svg>
+                    <p class="text-gray-700">Apa nama tempat umum yang biasanya digunakan untuk menonton pertandingan sepak bola?</p>
+                    <textarea id="q11" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 12 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 12</p>
+                    <p class="text-gray-700">Aku adalah tempat di mana kamu bisa meminjam banyak buku dan harus tenang. Aku adalah...</p>
+                    <textarea id="q12" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 13 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 13</p>
+                    <p class="text-gray-700">Kata depan "di" ditulis terpisah atau digabung jika menunjukkan tempat?</p>
+                    <textarea id="q13" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 14 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 14</p>
+                    <p class="text-gray-700">Pilih penulisan yang benar: <br> Buku itu (di pinjam / dipinjam) oleh Adi.</p>
+                    <textarea id="q14" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+                
+                <!-- Soal 15 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 15</p>
+                    <p class="text-gray-700">Sebutkan 3 (tiga) bagian urutan dalam alur cerita!</p>
+                    <textarea id="q15" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
+                </div>
+
+                <button type="button" id="submit-button" class="submit-btn">
+                    Selesai! Lihat Kunci Jawaban
+                </button>
+            </form>
+        </div>
+
+        <!-- Bagian Hasil -->
+        <div id="result-section" class="hidden">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
+            <p class="text-center text-gray-600 mb-8">Kerja bagus! Minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini.</p>
+
+            <!-- Loop Hasil 1-15 -->
+            <script>
+                // Data Kunci Jawaban
+                const correctAnswers = {
+                    r1: "Tanda seru.",
+                    r2: "Contoh: Ayo, kita ke kantin! / Mari, kita bermain!",
+                    r3: "Contoh: Jangan berlari di lorong! / Jangan bermain di tangga!",
+                    r4: "Tempat berkumpul saat terjadi bencana (seperti kebakaran).",
+                    r5: "Menunjukkan lokasi Titik Kumpul (Assembly Point).",
+                    r6: "Karena termasuk benda tajam yang bisa melukai.",
+                    r7: "Tidak menggunakan barang elektronik yang rusak / Mematikan setelah dipakai.",
+                    r8: "Paman Beni datang pada hari Minggu.",
+                    r9: "Awal kalimat, Nama orang, Nama hari, Nama bulan.",
+                    r10: "Museum.",
+                    r11: "Stadion.",
+                    r12: "Perpustakaan.",
+                    r13: "Ditulis terpisah (contoh: di sekolah).",
+                    r14: "dipinjam (ditulis gabung karena kata kerja).",
+                    r15: "Awal, tengah, dan akhir."
+                };
+
+                // Data Pertanyaan
+                const questions = {
+                    q1: "Apa nama tanda baca (!) yang digunakan di akhir kalimat perintah?",
+                    q2: "Buatlah satu contoh kalimat *ajakan* yang diakhiri tanda seru!",
+                    q3: "Buatlah satu contoh kalimat *larangan* yang diakhiri tanda seru!",
+                    q4: "Apa yang dimaksud dengan \"Titik Kumpul\" yang ada di sekolah?",
+                    q5: "Apa arti dari rambu \"Titik Kumpul\" (Assembly Point) pada gambar di atas?",
+                    q6: "Perhatikan gambar gunting. Mengapa gunting termasuk benda berbahaya yang tidak boleh dimainkan?",
+                    q7: "Sebutkan satu cara menjaga keselamatan di rumah saat menggunakan barang elektronik (contoh: mesin cuci, televisi)!",
+                    q8: "Perbaiki kalimat ini dengan huruf kapital yang benar: \n `paman beni datang pada hari minggu.`",
+                    q9: "Sebutkan 2 (dua) kegunaan huruf kapital (huruf besar)!",
+                    q10: "Apa nama tempat umum pada gambar di atas?",
+                    q11: "Apa nama tempat umum yang biasanya digunakan untuk menonton pertandingan sepak bola?",
+                    q12: "Aku adalah tempat di mana kamu bisa meminjam banyak buku dan harus tenang. Aku adalah...",
+                    q13: "Kata depan \"di\" ditulis terpisah atau digabung jika menunjukkan tempat?",
+                    q14: "Pilih penulisan yang benar: \n Buku itu (di pinjam / dipinjam) oleh Adi.",
+                    q15: "Sebutkan 3 (tiga) bagian urutan dalam alur cerita!"
+                };
+
+                // Generate 15 result cards
+                for (let i = 1; i <= 15; i++) {
+                    document.write(`
+                        <div class="result-card">
+                            <p class="text-lg font-semibold mb-2">Soal ${i}</p>
+                            <p class="text-gray-700 mb-3">${questions['q'+i].replace(/\n/g, '<br>')}</p>
+                            <p class="text-gray-700 font-medium">Jawabanmu:</p>
+                            <textarea id="r${i}" class="answer-textarea" readonly disabled style="background-color: #f9fafb;"></textarea>
+                            <div class="correct-answer">
+                                Kunci Jawaban: ${correctAnswers['r'+i]}
+                            </div>
+                        </div>
+                    `);
+                }
+            </script>
+            
+            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
+                Ulangi Kuis
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function() {
+            // Salin 15 jawaban ke bagian hasil
+            for (let i = 1; i <= 15; i++) {
+                document.getElementById('r' + i).value = document.getElementById('q' + i).value;
+            }
+
+            // Tampilkan hasil, tapi JANGAN sembunyikan kuis
+            document.getElementById('result-section').classList.remove('hidden');
+            
+            // Nonaktifkan semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = true;
+                textarea.style.backgroundColor = '#f9fafb'; // Ubah warna latar
+            });
+            
+            // Sembunyikan tombol submit
+            document.getElementById('submit-button').classList.add('hidden');
+
+            // Gulir ke bagian hasil
+            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('restart-button').addEventListener('click', function() {
+            // Kosongkan semua jawaban
+            for (let i = 1; i <= 15; i++) {
+                document.getElementById('q' + i).value = '';
+                document.getElementById('r' + i).value = '';
+            }
+
+            // Sembunyikan hasil
+            document.getElementById('result-section').classList.add('hidden');
+
+            // Aktifkan kembali semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = false;
+                textarea.style.backgroundColor = '#ffffff'; // Kembalikan warna
+            });
+
+            // Tampilkan kembali tombol submit
+            document.getElementById('submit-button').classList.remove('hidden');
+            
+            // Gulir ke atas
+            window.scrollTo(0, 0);
+        });
+    </script>
+
+</body>
+</html>
