@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Bahasa Inggris - Kelas 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .question-card {
+            background-color: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .question-svg {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem auto;
+            display: block;
+            border: 1px solid #eee;
+            border-radius: 0.5rem;
+            padding: 10px;
+        }
+        .answer-textarea {
+            width: 100%;
+            min-height: 70px;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .answer-textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            outline: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+        .result-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .correct-answer {
+            background-color: #d1fae5;
+            border: 1px solid #34d399;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        
+        <!-- Bagian Kuis -->
+        <div id="quiz-section">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis Bahasa Inggris</h1>
+            <p class="text-center text-gray-600 mb-8">Jawablah 15 pertanyaan di bawah ini (dalam Bahasa Inggris).</p>
+
+            <form id="quiz-form">
+                <!-- Soal 1 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 1</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sink -->
+                        <path d="M10 70 H 90 V 85 C 90 95, 70 95, 70 85 H 30 C 30 95, 10 95, 10 85 Z" fill="#e0e0e0"/>
+                        <!-- Tap -->
+                        <rect x="60" y="40" width="10" height="25" fill="#a1a1aa"/>
+                        <rect x="50" y="58" width="20" height="7" fill="#a1a1aa"/>
+                        <!-- Water -->
+                        <line x1="55" y1="65" x2="55" y2="75" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+                        <!-- Hands -->
+                        <path d="M30 75 C 20 75 20 85 30 85 L 45 85 L 45 75 Z" fill="#fcd9b6" stroke="#333" stroke-width="1.5"/>
+                        <path d="M48 75 C 38 75 38 85 48 85 L 63 85 L 63 75 Z" fill="#fcd9b6" stroke="#333" stroke-width="1.5" transform="translate(2,0)"/>
+                    </svg>
+                    <p class="text-gray-700">Look at the picture. What is the action? (Mencuci tangan)</p>
+                    <textarea id="q1" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 2</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Head -->
+                        <circle cx="50" cy="45" r="20" fill="#fcd9b6"/>
+                        <!-- Hair -->
+                        <path d="M30 40 C 30 20, 70 20, 70 40 Z" fill="#333"/>
+                        <!-- Mouth -->
+                        <path d="M40 55 Q 50 60 60 55" fill="#fff" stroke="#000" stroke-width="1"/>
+                        <!-- Toothbrush -->
+                        <rect x="60" y="53" width="25" height="6" fill="#f87171" rx="2"/>
+                        <rect x="80" y="50" width="5" height="12" fill="#fff" rx="1"/>
+                    </svg>
+                    <p class="text-gray-700">Look at the picture. What is the action for your teeth? (Menggosok gigi)</p>
+                    <textarea id="q2" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 3</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Basin -->
+                        <path d="M10 70 H 90 V 85 C 90 95, 70 95, 70 85 H 30 C 30 95, 10 95, 10 85 Z" fill="#a78bfa"/>
+                        <!-- Head -->
+                        <circle cx="50" cy="45" r="20" fill="#fcd9b6"/>
+                        <!-- Hair -->
+                        <path d="M30 40 C 30 20, 70 20, 70 40 Z" fill="#333"/>
+                        <!-- Hands -->
+                        <path d="M25 60 C 35 60 35 70 25 70 L 30 55 Z" fill="#fcd9b6" stroke="#333" stroke-width="1.5"/>
+                        <path d="M75 60 C 65 60 65 70 75 70 L 70 55 Z" fill="#fcd9b6" stroke="#333" stroke-width="1.5"/>
+                        <!-- Water -->
+                        <circle cx="45" cy="50" r="2" fill="#3b82f6"/>
+                        <circle cx="55" cy="52" r="2" fill="#3b82f6"/>
+                    </svg>
+                    <p class="text-gray-700">Look at the picture. What is the action? (Mencuci muka)</p>
+                    <textarea id="q3" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+                
+                <!-- Soal 4 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 4</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Head -->
+                        <circle cx="50" cy="55" r="20" fill="#fcd9b6"/>
+                        <!-- Hair -->
+                        <path d="M30 50 C 30 30, 70 30, 70 50 Q 70 60 50 70 Q 30 60 30 50 Z" fill="#333"/>
+                        <!-- Comb -->
+                        <rect x="70" y="30" width="20" height="5" fill="#a855f7" rx="2"/>
+                        <rect x="73" y="25" width="3" height="10" fill="#a855f7"/>
+                        <rect x="79" y="25" width="3" height="10" fill="#a855f7"/>
+                        <rect x="85" y="25" width="3" height="10" fill="#a855f7"/>
+                    </svg>
+                    <p class="text-gray-700">Look at the picture. What is the action for your hair? (Menyisir rambut)</p>
+                    <textarea id="q4" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+                
+                <!-- Soal 5 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 5</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Head -->
+                        <circle cx="50" cy="50" r="20" fill="#fcd9b6"/>
+                        <!-- Hair -->
+                        <path d="M30 45 C 30 25, 70 25, 70 45 Z" fill="#333"/>
+                        <!-- Mask -->
+                        <path d="M35 55 H 65 V 70 H 35 Q 40 62 35 55 Z" fill="#34d399" stroke="#047857" stroke-width="1.5"/>
+                        <!-- Straps -->
+                        <path d="M35 55 C 25 50 25 60 30 60" fill="none" stroke="#71717a" stroke-width="2"/>
+                        <path d="M65 55 C 75 50 75 60 70 60" fill="none" stroke="#71717a" stroke-width="2"/>
+                    </svg>
+                    <p class="text-gray-700">Look at the picture. What is the action? (Memakai masker)</p>
+                    <textarea id="q5" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+                
+                <!-- Soal 6 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 6</p>
+                    <p class="text-gray-700">What part of the body do you use to see? (Melihat)</p>
+                    <textarea id="q6" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <!-- Soal 7 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 7</p>
+                    <p class="text-gray-700">What part of the body do you use to eat and speak? (Makan dan bicara)</p>
+                    <textarea id="q7" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <!-- Soal 8 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 8</p>
+                    <p class="text-gray-700">What part of the body do you use to hear? (Mendengar)</p>
+                    <textarea id="q8" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+                
+                <!-- Soal 9 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 9</p>
+                    <p class="text-gray-700">What part of the body do you use to walk? (Berjalan)</p>
+                    <textarea id="q9" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+                
+                <!-- Soal 10 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 10</p>
+                    <p class="text-gray-700">This grows on top of your head. What is it? (Di atas kepala)</p>
+                    <textarea id="q10" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <!-- Soal 11 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 11</p>
+                    <p class="text-gray-700">What action do you do to make your hands clean? (Membuat tangan bersih)</p>
+                    <textarea id="q11" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <!-- Soal 12 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 12</p>
+                    <p class="text-gray-700">What do you call hands that are *not* clean? (Tidak bersih)</p>
+                    <textarea id="q12" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <!-- Soal 13 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 13</p>
+                    <p class="text-gray-700">What is the first step of washing hands? (Langkah pertama)</p>
+                    <textarea id="q13" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+                
+                <!-- Soal 14 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 14</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="50,15 90,85 10,85" fill="#34d399" stroke="#047857" stroke-width="2"/>
+                    </svg>
+                    <p class="text-gray-700">Look at the shape. What is this? (Segitiga)</p>
+                    <textarea id="q14" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+                
+                <!-- Soal 15 -->
+                <div class="question-card">
+                    <p class="text-lg font-semibold mb-2">Soal 15</p>
+                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="50,5 61,40 98,40 68,62 79,96 50,75 21,96 32,62 2,40 39,40" fill="#facc15" stroke="#a16207" stroke-width="2"/>
+                    </svg>
+                    <p class="text-gray-700">Look at the shape. What is this? (Bintang)</p>
+                    <textarea id="q15" class="answer-textarea" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <button type="button" id="submit-button" class="submit-btn">
+                    Selesai! Lihat Kunci Jawaban
+                </button>
+            </form>
+        </div>
+
+        <!-- Bagian Hasil -->
+        <div id="result-section" class="hidden">
+            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
+            <p class="text-center text-gray-600 mb-8">Great job! Minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini.</p>
+
+            <!-- Loop Hasil 1-15 -->
+            <script>
+                // Data Kunci Jawaban
+                const correctAnswers = {
+                    r1: "Wash your hands / Washing hands",
+                    r2: "Brush your teeth / Brushing teeth",
+                    r3: "Wash your face / Washing face",
+                    r4: "Comb your hair / Combing hair",
+                    r5: "Wear your mask / Wearing a mask",
+                    r6: "Eyes",
+                    r7: "Mouth",
+                    r8: "Ears",
+                    r9: "Feet",
+                    r10: "Hair",
+                    r11: "Wash my hands",
+                    r12: "Dirty hands",
+                    r13: "Wet your hands",
+                    r14: "A triangle",
+                    r15: "A star"
+                };
+
+                <!-- Data Pertanyaan
+                const questions = {
+                    q1: "Look at the picture. What is the action? (Mencuci tangan)",
+                    q2: "Look at the picture. What is the action for your teeth? (Menggosok gigi)",
+                    q3: "Look at the picture. What is the action? (Mencuci muka)",
+                    q4: "Look at the picture. What is the action for your hair? (Menyisir rambut)",
+                    q5: "Look at the picture. What is the action? (Memakai masker)",
+                    q6: "What part of the body do you use to see? (Melihat)",
+                    q7: "What part of the body do you use to eat and speak? (Makan dan bicara)",
+                    q8: "What part of the body do you use to hear? (Mendengar)",
+                    q9: "What part of the body do you use to walk? (Berjalan)",
+                    q10: "This grows on top of your head. What is it? (Di atas kepala)",
+                    q11: "What action do you do to make your hands clean? (Membuat tangan bersih)",
+                    q12: "What do you call hands that are *not* clean? (Tidak bersih)",
+                    q13: "What is the first step of washing hands? (Langkah pertama)",
+                    q14: "Look at the shape. What is this? (Segitiga)",
+                    q15: "Look at the shape. What is this? (Bintang)"
+                };
+
+                // Generate 15 result cards
+                for (let i = 1; i <= 15; i++) {
+                    document.write(`
+                        <div class="result-card">
+                            <p class="text-lg font-semibold mb-2">Soal ${i}</p>
+                            <p class="text-gray-700 mb-3">${questions['q'+i]}</p>
+                            <p class="text-gray-700 font-medium">Jawabanmu:</p>
+                            <textarea id="r${i}" class="answer-textarea" readonly disabled style="background-color: #f9fafb;"></textarea>
+                            <div class="correct-answer">
+                                Kunci Jawaban: ${correctAnswers['r'+i]}
+                            </div>
+                        </div>
+                    `);
+                }
+            </script>
+            
+            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
+                Ulangi Kuis
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function() {
+            // Salin 15 jawaban ke bagian hasil
+            for (let i = 1; i <= 15; i++) {
+                document.getElementById('r' + i).value = document.getElementById('q' + i).value;
+            }
+
+            // Tampilkan hasil, tapi JANGAN sembunyikan kuis
+            document.getElementById('result-section').classList.remove('hidden');
+            
+            // Nonaktifkan semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = true;
+                textarea.style.backgroundColor = '#f9fafb'; // Ubah warna latar
+            });
+            
+            // Sembunyikan tombol submit
+            document.getElementById('submit-button').classList.add('hidden');
+
+            // Gulir ke bagian hasil
+            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('restart-button').addEventListener('click', function() {
+            // Kosongkan semua jawaban
+            for (let i = 1; i <= 15; i++) {
+                document.getElementById('q' + i).value = '';
+                document.getElementById('r' + i).value = '';
+            }
+
+            // Sembunyikan hasil
+            document.getElementById('result-section').classList.add('hidden');
+
+            // Aktifkan kembali semua textarea di bagian kuis
+            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
+            quizTextareas.forEach(textarea => {
+                textarea.disabled = false;
+                textarea.style.backgroundColor = '#ffffff'; // Kembalikan warna
+            });
+
+            // Tampilkan kembali tombol submit
+            document.getElementById('submit-button').classList.remove('hidden');
+            
+            // Gulir ke atas
+            window.scrollTo(0, 0);
+        });
+    </script>
+
+</body>
+</html>
