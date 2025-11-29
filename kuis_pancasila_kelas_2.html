@@ -3,373 +3,527 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Pendidikan Pancasila - Kelas 2</title>
+    <title>Latihan Soal Pancasila - Aturan di Rumah & Sekolah</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
+            font-family: 'Nunito', sans-serif;
+            background-color: #fef2f2; /* Red background */
         }
-        .quiz-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
         }
-        .question-card {
-            background-color: #fafafa;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        .quiz-card {
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
         }
-        .question-svg {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1rem auto;
-            display: block;
-            border: 1px solid #eee;
-            border-radius: 0.5rem;
-            padding: 10px;
+        .quiz-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .answer-textarea {
-            width: 100%;
-            min-height: 80px;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            padding: 0.75rem;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
+        .quiz-card.answered {
+            border-left-color: #dc2626; /* Red-600 */
         }
-        .answer-textarea:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-            outline: none;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ffffff;
-            background-color: #3b82f6;
-            border: none;
-            border-radius: 0.5rem;
+        .option-container {
             cursor: pointer;
             transition: background-color 0.2s;
         }
-        .submit-btn:hover {
-            background-color: #2563eb;
+        .option-container:hover {
+            background-color: #fee2e2;
         }
-        .result-card {
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #e5e7eb;
+        .option-input:checked + .option-label {
+            color: #991b1b;
+            font-weight: bold;
         }
-        .correct-answer {
-            background-color: #d1fae5;
-            border: 1px solid #34d399;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            font-weight: 600;
+        .result-box {
+            animation: slideIn 0.5s ease-out;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            color: #3b82f6;
-            text-decoration: none;
+        .question-svg {
+            display: block;
+            margin: 10px auto;
+            max-width: 150px;
+            height: auto;
         }
-        .back-link:hover {
-            text-decoration: underline;
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
+<body class="bg-red-50 min-h-screen pb-20">
 
-    <div class="quiz-container">
-        
-        <!-- Bagian Kuis -->
-        <div id="quiz-section">
-            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
-            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis Pendidikan Pancasila</h1>
-            <p class="text-center text-gray-600 mb-8">Jawablah 15 pertanyaan di bawah ini.</p>
-
-            <form id="quiz-form">
-                <!-- Soal 1 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 1</p>
-                    <p class="text-gray-700">Mengapa aturan di rumah dan di sekolah perlu dibuat?</p>
-                    <textarea id="q1" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 2 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 2</p>
-                    <p class="text-gray-700">Apa sebutan lain untuk aturan di sekolah?</p>
-                    <textarea id="q2" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 3 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 3</p>
-                    <p class="text-gray-700">Apa yang akan terjadi jika anggota keluarga tidak mematuhi aturan di rumah?</p>
-                    <textarea id="q3" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 4 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 4</p>
-                    <p class="text-gray-700">Sebutkan 2 (dua) contoh aturan di rumah yang biasa dilakukan pada pagi hari!</p>
-                    <textarea id="q4" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 5 (Gambar) -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 5</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Gambar Rak Sepatu yang lebih jelas -->
-                        <!-- Frame Rak -->
-                        <rect x="15" y="20" width="70" height="65" fill="#f3e8ff" stroke="#a855f7" stroke-width="2" rx="3"/>
-                        <!-- Kaki -->
-                        <line x1="15" y1="85" x2="15" y2="90" stroke="#a855f7" stroke-width="2"/>
-                        <line x1="85" y1="85" x2="85" y2="90" stroke="#a855f7" stroke-width="2"/>
-                        <!-- Papan Rak (Tengah) -->
-                        <line x1="15" y1="55" x2="85" y2="55" stroke="#a855f7" stroke-width="2"/>
-                        
-                        <!-- Sepatu 1 (Rak Atas) -->
-                        <path d="M25 45 Q 35 40 45 45 L 45 52 H 25 Z" fill="#4a5568"/>
-                        <!-- Sepatu 2 (Rak Atas) -->
-                        <path d="M55 45 Q 65 40 75 45 L 75 52 H 55 Z" fill="#4a5568"/>
-                        
-                        <!-- Sepatu 3 (Rak Bawah) -->
-                        <path d="M25 75 Q 35 70 45 75 L 45 82 H 25 Z" fill="#4a5568"/>
-                        <!-- Sepatu 4 (Rak Bawah) -->
-                        <path d="M55 75 Q 65 70 75 75 L 75 82 H 55 Z" fill="#4a5568"/>
-                    </svg>
-                    <p class="text-gray-700">Apa nama aturan yang sesuai dengan gambar di atas?</p>
-                    <textarea id="q5" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 6 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 6</p>
-                    <p class="text-gray-700">Sebutkan 2 (dua) contoh aturan di rumah pada malam hari sebelum tidur!</p>
-                    <textarea id="q6" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 7 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 7</p>
-                    <p class="text-gray-700">Bagaimana sikap kita saat berbicara dengan guru di sekolah?</p>
-                    <textarea id="q7" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 8 (Gambar) -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 8</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                         <!-- Kepala -->
-                        <circle cx="50" cy="30" r="10" fill="#fcd9b6"/>
-                        <!-- Topi -->
-                        <path d="M40 25 Q 50 15 60 25" fill="#dc2626" stroke="#000" stroke-width="1.5"/>
-                        <rect x="38" y="24" width="24" height="5" fill="#dc2626" stroke="#000" stroke-width="1.5"/>
-                        <!-- Badan -->
-                        <rect x="35" y="40" width="30" height="30" fill="#fff" stroke="#000" stroke-width="2"/>
-                        <!-- Dasi -->
-                        <polygon points="48,40 52,40 50,55" fill="#dc2626" stroke="#000" stroke-width="1.5"/>
-                    </svg>
-                    <p class="text-gray-700">Memakai seragam harus lengkap. Sebutkan 2 kelengkapan seragam pada gambar di atas!</p>
-                    <textarea id="q8" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 9 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 9</p>
-                    <p class="text-gray-700">Apa yang harus kamu lakukan jika ingin meminjam barang milik teman?</p>
-                    <textarea id="q9" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 10 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 10</p>
-                    <p class="text-gray-700">Siswa harus mengerjakan piket kelas sesuai...</p>
-                    <textarea id="q10" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 11 (Gambar) -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 11</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Bed -->
-                        <rect x="10" y="50" width="80" height="40" fill="#a3a3a3"/>
-                        <rect x="10" y="45" width="80" height="10" fill="#fff"/>
-                        <!-- Messy stuff -->
-                        <path d="M20 40 Q 30 30 40 40 T 60 40" fill="none" stroke="#737373" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="70" cy="40" r="5" fill="#3b82f6"/>
-                        <rect x="75" y="70" width="10" height="15" fill="#f87171"/>
-                    </svg>
-                    <p class="text-gray-700">Toni tidak merapikan kamarnya seperti pada gambar. Apa akibat dari tidak mematuhi aturan tersebut?</p>
-                    <textarea id="q11" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 12 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 12</p>
-                    <p class="text-gray-700">Bayu selalu meminta izin kepada ibu sebelum bermain. Apa manfaat dari sikap Bayu tersebut?</p>
-                    <textarea id="q12" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 13 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 13</p>
-                    <p class="text-gray-700">Dimas sering datang terlambat ke sekolah. Apa akibatnya bagi kegiatan belajar Dimas?</p>
-                    <textarea id="q13" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 14 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 14</p>
-                    <p class="text-gray-700">Apa yang harus kita lakukan saat mengikuti upacara bendera?</p>
-                    <textarea id="q14" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 15 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 15</p>
-                    <p class="text-gray-700">Apa manfaat mematuhi aturan di sekolah bagi siswa?</p>
-                    <textarea id="q15" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <button type="button" id="submit-button" class="submit-btn">
-                    Selesai! Lihat Kunci Jawaban
-                </button>
-            </form>
+    <!-- Header -->
+    <header class="bg-red-600 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold">Latihan Soal Pancasila</h1>
+                <p class="text-red-100 text-sm md:text-base">Bab 2: Pentingnya Mematuhi Aturan</p>
+            </div>
+            <div class="text-right hidden md:block">
+                <p class="font-semibold">Kelas 2 SD</p>
+                <p class="text-xs text-red-200">40 Soal</p>
+            </div>
         </div>
+    </header>
 
-        <!-- Bagian Hasil -->
-        <div id="result-section" class="hidden">
-            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
-            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
-            <p class="text-center text-gray-600 mb-8">Kerja bagus! Minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini.</p>
-
-            <!-- Loop Hasil 1-15 -->
-            <script>
-                // Data Kunci Jawaban
-                const correctAnswers = {
-                    r1: "Agar kehidupan di rumah dan sekolah berjalan tertib dan teratur.",
-                    r2: "Tata tertib sekolah.",
-                    r3: "Suasana rumah menjadi tidak tertib/tidak nyaman, dan anggota keluarga lain bisa terganggu.",
-                    r4: "Merapikan tempat tidur, mandi, makan pagi, pamit kepada orang tua.",
-                    r5: "Meletakkan sepatu di rak sepatu.",
-                    r6: "Menyiapkan buku pelajaran, menyikat gigi, berdoa sebelum tidur.",
-                    r7: "Berbicara dengan bahasa yang santun dan jujur.",
-                    r8: "Topi dan dasi.",
-                    r9: "Meminta izin terlebih dahulu.",
-                    r10: "Jadwal (yang telah ditentukan).",
-                    r11: "Kamar menjadi berantakan, tidak rapi, dan tidak nyaman.",
-                    r12: "Ibu tidak khawatir (karena tahu Bayu di mana) dan ibu semakin menyayangi Bayu.",
-                    r13: "Ditegur guru, mengganggu siswa lain, dan tidak dapat belajar dengan tenang.",
-                    r14: "Mengikuti upacara dengan khidmat dan tertib (tidak mengobrol).",
-                    r15: "Bisa belajar dengan nyaman, disayang guru dan teman, dan dapat meraih prestasi."
-                };
-
-                // Data Pertanyaan
-                const questions = {
-                    q1: "Mengapa aturan di rumah dan di sekolah perlu dibuat?",
-                    q2: "Apa sebutan lain untuk aturan di sekolah?",
-                    q3: "Apa yang akan terjadi jika anggota keluarga tidak mematuhi aturan di rumah?",
-                    q4: "Sebutkan 2 (dua) contoh aturan di rumah yang biasa dilakukan pada pagi hari!",
-                    q5: "Apa nama aturan yang sesuai dengan gambar di atas?",
-                    q6: "Sebutkan 2 (dua) contoh aturan di rumah pada malam hari sebelum tidur!",
-                    q7: "Bagaimana sikap kita saat berbicara dengan guru di sekolah?",
-                    q8: "Memakai seragam harus lengkap. Sebutkan 2 kelengkapan seragam pada gambar di atas!",
-                    q9: "Apa yang harus kamu lakukan jika ingin meminjam barang milik teman?",
-                    q10: "Siswa harus mengerjakan piket kelas sesuai...",
-                    q11: "Toni tidak merapikan kamarnya seperti pada gambar. Apa akibat dari tidak mematuhi aturan tersebut?",
-                    q12: "Bayu selalu meminta izin kepada ibu sebelum bermain. Apa manfaat dari sikap Bayu tersebut?",
-                    q13: "Dimas sering datang terlambat ke sekolah. Apa akibatnya bagi kegiatan belajar Dimas?",
-                    q14: "Apa yang harus kita lakukan saat mengikuti upacara bendera?",
-                    q15: "Apa manfaat mematuhi aturan di sekolah bagi siswa?"
-                };
-
-                // Generate 15 result cards
-                for (let i = 1; i <= 15; i++) {
-                    document.write(`
-                        <div class="result-card">
-                            <p class="text-lg font-semibold mb-2">Soal ${i}</p>
-                            <p class="text-gray-700 mb-3">${questions['q'+i]}</p>
-                            <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                            <textarea id="r${i}" class="answer-textarea" readonly disabled style="background-color: #f9fafb;"></textarea>
-                            <div class="correct-answer">
-                                Kunci Jawaban: ${correctAnswers['r'+i]}
-                            </div>
-                        </div>
-                    `);
-                }
-            </script>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 mt-6">
+        <form id="quizForm" class="space-y-6">
             
-            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
-                Ulangi Kuis
-            </button>
+            <!-- Container Soal -->
+            <div id="questions-container"></div>
+
+            <!-- Tombol Submit -->
+            <div class="mt-10 mb-20 text-center">
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transform transition hover:scale-105 text-lg flex items-center justify-center mx-auto gap-2">
+                    <span>✅ Selesai & Lihat Nilai</span>
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Modal Hasil -->
+    <div id="resultModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto result-box">
+            <div class="p-6 md:p-8">
+                <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-full bg-red-100 mb-4">
+                        <span class="text-4xl">🇮🇩</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Hasil Latihan</h2>
+                    <p class="text-gray-600">Hebat! Kamu telah menyelesaikan latihan Pancasila.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-center">
+                        <p class="text-sm text-blue-600 font-semibold uppercase tracking-wider">Skor Objektif</p>
+                        <p id="finalScore" class="text-4xl font-bold text-blue-800">0</p>
+                        <p class="text-xs text-blue-500 mt-1">(PG, Benar/Salah, Isian, PG Kompleks)</p>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-200 text-center">
+                        <p class="text-sm text-orange-600 font-semibold uppercase tracking-wider">Soal Uraian</p>
+                        <p class="text-lg font-bold text-orange-800">Cek Manual</p>
+                        <p class="text-xs text-orange-500 mt-1">(Minta orang tua/guru menilai)</p>
+                    </div>
+                </div>
+
+                <!-- Rincian -->
+                <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                    <h3 class="font-bold text-gray-700 mb-2">Rincian Jawaban:</h3>
+                    <div id="resultDetails" class="space-y-2 text-sm text-gray-600 max-h-40 overflow-y-auto">
+                        <!-- Detail will be injected here -->
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-3 justify-center">
+                    <button id="closeModalBtn" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition">
+                        Tutup & Lihat Pembahasan
+                    </button>
+                    <button onclick="location.reload()" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition">
+                        Ulangi Latihan
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function() {
-            // Salin 15 jawaban ke bagian hasil
-            for (let i = 1; i <= 15; i++) {
-                document.getElementById('r' + i).value = document.getElementById('q' + i).value;
+        // Koleksi SVG Sederhana untuk Ilustrasi (Simbolik)
+        const svgs = {
+            rumah: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10,40 L50,10 L90,40 V90 H10 Z" fill="#fca5a5" stroke="#b91c1c" stroke-width="2"/><rect x="40" y="60" width="20" height="30" fill="#7f1d1d"/><rect x="20" y="50" width="15" height="15" fill="#fef2f2" stroke="#b91c1c"/><rect x="65" y="50" width="15" height="15" fill="#fef2f2" stroke="#b91c1c"/></svg>`,
+            jam: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="#fff" stroke="#dc2626" stroke-width="3"/><path d="M50,50 L50,20" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/><path d="M50,50 L70,50" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="50" r="3" fill="#dc2626"/></svg>`,
+            seragam: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M30,20 L40,10 L60,10 L70,20 V60 H30 Z" fill="#fff" stroke="#b91c1c" stroke-width="2"/><path d="M30,60 H70 V90 H30 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M50,20 V50" stroke="#b91c1c" stroke-width="1"/><polygon points="45,20 55,20 50,40" fill="#dc2626"/></svg>`,
+            sekolah: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="40" width="80" height="50" fill="#fcd34d" stroke="#d97706"/><path d="M5,40 L50,10 L95,40" fill="#ef4444" stroke="#b91c1c"/><rect x="40" y="60" width="20" height="30" fill="#92400e"/><rect x="20" y="50" width="15" height="15" fill="#fff" stroke="#d97706"/><line x1="80" y1="90" x2="80" y2="20" stroke="#000" stroke-width="2"/><rect x="80" y="20" width="15" height="10" fill="#ef4444"/></svg>`
+        };
+
+        // Data Soal (40 Soal berdasarkan Kisi-kisi Pancasila)
+        const questions = [
+            // --- BAGIAN 1: PILIHAN GANDA (1-12) ---
+            {
+                id: 1, type: 'pg', question: "Aturan di rumah dan di sekolah dibuat agar hidup menjadi ...",
+                options: ["Kacau", "Tertib", "Ramai", "Bebas"], answer: "Tertib",
+                hint: "Tujuan utama aturan."
+            },
+            {
+                id: 2, type: 'pg', question: "Aturan sekolah disebut juga dengan ...",
+                options: ["Undang-undang", "Nasihat", "Tata tertib", "Perintah"], answer: "Tata tertib",
+                svg: svgs.sekolah,
+                hint: "Aturan resmi di sekolah."
+            },
+            {
+                id: 3, type: 'pg', question: "Sikap mematuhi aturan di rumah contohnya adalah ...",
+                options: ["Bangun kesiangan", "Merapikan tempat tidur", "Bermain tanpa izin", "Membiarkan mainan berantakan"], answer: "Merapikan tempat tidur",
+                svg: svgs.rumah,
+                hint: "Kegiatan pagi hari di kamar."
+            },
+            {
+                id: 4, type: 'pg', question: "Sebelum pergi bermain, kita harus ... kepada orang tua.",
+                options: ["Meminta uang", "Menangis", "Diam saja", "Meminta izin"], answer: "Meminta izin",
+                hint: "Agar orang tua tidak khawatir."
+            },
+            {
+                id: 5, type: 'pg', question: "Aturan saat berbicara dengan guru adalah menggunakan bahasa yang ...",
+                options: ["Kasar", "Santun", "Keras", "Cepat"], answer: "Santun",
+                hint: "Sopan dan hormat."
+            },
+            {
+                id: 6, type: 'pg', question: "Akibat jika sering datang terlambat ke sekolah adalah ...",
+                options: ["Dipuji guru", "Ketinggalan pelajaran", "Mendapat hadiah", "Disayang teman"], answer: "Ketinggalan pelajaran",
+                svg: svgs.jam,
+                hint: "Waktu belajar berkurang."
+            },
+            {
+                id: 7, type: 'pg', question: "Jika melanggar aturan, kita akan mendapatkan ...",
+                options: ["Hadiah", "Pujian", "Sanksi/Hukuman", "Nilai bagus"], answer: "Sanksi/Hukuman",
+                hint: "Konsekuensi perbuatan buruk."
+            },
+            {
+                id: 8, type: 'pg', question: "Berikut ini adalah perlengkapan seragam sekolah, kecuali ...",
+                options: ["Topi", "Dasi", "Kalung mainan", "Ikat pinggang"], answer: "Kalung mainan",
+                svg: svgs.seragam,
+                hint: "Benda yang tidak boleh dipakai ke sekolah."
+            },
+            {
+                id: 9, type: 'pg', question: "Aturan sebelum tidur malam adalah ...",
+                options: ["Makan permen", "Bermain bola", "Menggosok gigi", "Berteriak"], answer: "Menggosok gigi",
+                hint: "Menjaga kesehatan gigi."
+            },
+            {
+                id: 10, type: 'pg', question: "Aturan di sekolah harus dipatuhi oleh ...",
+                options: ["Guru saja", "Siswa saja", "Kepala sekolah saja", "Seluruh warga sekolah"], answer: "Seluruh warga sekolah",
+                hint: "Semua orang di sekolah."
+            },
+            {
+                id: 11, type: 'pg', question: "Saat upacara bendera, sikap kita harus ...",
+                options: ["Mengobrol", "Tertib dan khidmat", "Bercanda", "Duduk santai"], answer: "Tertib dan khidmat",
+                hint: "Menghormati bendera."
+            },
+            {
+                id: 12, type: 'pg', question: "Contoh aturan tertulis di masyarakat adalah ...",
+                options: ["Menghormati orang tua", "Rambu lalu lintas", "Menyapa tetangga", "Membantu teman"], answer: "Rambu lalu lintas",
+                hint: "Ada tulisan atau gambarnya di jalan."
+            },
+
+            // --- BAGIAN 2: BENAR / SALAH (13-22) ---
+            {
+                id: 13, type: 'tf', question: "Aturan di rumah hanya berlaku untuk anak-anak saja.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Berlaku untuk semua anggota keluarga."
+            },
+            {
+                id: 14, type: 'tf', question: "Merapikan sepatu di rak sepatu adalah aturan setelah pulang sekolah.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Agar rumah rapi."
+            },
+            {
+                id: 15, type: 'tf', question: "Memakai seragam sekolah boleh sesuka hati, tidak perlu sesuai jadwal.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                svg: svgs.seragam,
+                hint: "Ada jadwal seragam (Senin-Selasa, dst)."
+            },
+            {
+                id: 16, type: 'tf', question: "Jika ingin meminjam pensil teman, kita harus meminta izin terlebih dahulu.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Sopan santun meminjam."
+            },
+            {
+                id: 17, type: 'tf', question: "Bermain game sampai larut malam adalah contoh mematuhi aturan.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Itu melanggar aturan tidur malam."
+            },
+            {
+                id: 18, type: 'tf', question: "Kita harus mengetuk pintu dan mengucapkan salam sebelum masuk rumah.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                svg: svgs.rumah,
+                hint: "Adab masuk rumah."
+            },
+            {
+                id: 19, type: 'tf', question: "Melaksanakan piket kelas adalah kewajiban siswa.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Menjaga kebersihan kelas."
+            },
+            {
+                id: 20, type: 'tf', question: "Berbicara kasar kepada teman diperbolehkan di sekolah.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Harus berbicara sopan."
+            },
+            {
+                id: 21, type: 'tf', question: "Membantu ibu menyiapkan makan malam adalah aturan di sore/malam hari.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Sikap membantu orang tua."
+            },
+            {
+                id: 22, type: 'tf', question: "Aturan dibuat untuk membuat kita susah.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Aturan dibuat untuk kebaikan bersama."
+            },
+
+            // --- BAGIAN 3: ISIAN SINGKAT (23-30) ---
+            {
+                id: 23, type: 'isian', question: "Aturan dapat berupa aturan tertulis dan ...",
+                answer: "tidak tertulis", hint: "Lawan dari tertulis."
+            },
+            {
+                id: 24, type: 'isian', question: "Aturan di sekolah disebut juga ...",
+                answer: "tata tertib", svg: svgs.sekolah, hint: "Dua kata, berawalan T."
+            },
+            {
+                id: 25, type: 'isian', question: "Jika berbuat salah, kita harus segera meminta ...",
+                answer: "maaf", hint: "Sikap mengakui kesalahan."
+            },
+            {
+                id: 26, type: 'isian', question: "Siswa yang melanggar aturan akan mendapatkan ...",
+                answer: "sanksi", hint: "Atau hukuman."
+            },
+            {
+                id: 27, type: 'isian', question: "Sebelum makan, kita harus ...",
+                answer: "berdoa", hint: "Memohon berkah Tuhan."
+            },
+            {
+                id: 28, type: 'isian', question: "Aturan di rumah harus dipatuhi oleh semua anggota ...",
+                answer: "keluarga", svg: svgs.rumah, hint: "Ayah, Ibu, Anak."
+            },
+            {
+                id: 29, type: 'isian', question: "Membuang sampah harus di ...",
+                answer: "tempat sampah", hint: "Wadah sampah."
+            },
+            {
+                id: 30, type: 'isian', question: "Jika guru sedang menjelaskan pelajaran, kita harus ...",
+                answer: "mendengarkan", hint: "Memperhatikan dengan baik."
+            },
+
+            // --- BAGIAN 4: PILIHAN GANDA KOMPLEKS (31-35) ---
+            {
+                id: 31, type: 'pg_kompleks', question: "Pilih 2 aturan di PAGI hari:",
+                options: ["Tidur siang", "Merapikan tempat tidur", "Mandi pagi", "Mengerjakan PR"], answer: ["Merapikan tempat tidur", "Mandi pagi"],
+                hint: "Kegiatan setelah bangun tidur."
+            },
+            {
+                id: 32, type: 'pg_kompleks', question: "Pilih 2 kelengkapan seragam sekolah:",
+                options: ["Topi", "Mainan", "Dasi", "Sandal jepit"], answer: ["Topi", "Dasi"],
+                svg: svgs.seragam,
+                hint: "Atribut resmi."
+            },
+            {
+                id: 33, type: 'pg_kompleks', question: "Pilih 2 sikap yang TIDAK boleh dilakukan di sekolah:",
+                options: ["Berkelahi", "Belajar", "Mencontek", "Berdoa"], answer: ["Berkelahi", "Mencontek"],
+                hint: "Perbuatan buruk."
+            },
+            {
+                id: 34, type: 'pg_kompleks', question: "Pilih 2 manfaat mematuhi aturan:",
+                options: ["Hidup menjadi tertib", "Sering dihukum", "Disayang orang tua", "Dijauhi teman"], answer: ["Hidup menjadi tertib", "Disayang orang tua"],
+                hint: "Hal positif."
+            },
+            {
+                id: 35, type: 'pg_kompleks', question: "Pilih 2 aturan saat pulang sekolah:",
+                options: ["Melepas sepatu", "Langsung bermain", "Ganti baju", "Tidur pakai seragam"], answer: ["Melepas sepatu", "Ganti baju"],
+                hint: "Kebersihan diri setelah sekolah."
+            },
+
+            // --- BAGIAN 5: URAIAN (36-40) ---
+            {
+                id: 36, type: 'uraian', question: "Sebutkan 3 contoh aturan di rumah pada malam hari!",
+                answer: "Belajar/mengerjakan PR, makan malam bersama, menggosok gigi, berdoa sebelum tidur.", 
+                hint: "Kegiatan sebelum tidur."
+            },
+            {
+                id: 37, type: 'uraian', question: "Apa akibatnya jika kita tidak merapikan mainan setelah bermain?",
+                answer: "Rumah menjadi berantakan, mainan bisa hilang/rusak, bisa terinjak orang lain.", 
+                svg: svgs.rumah,
+                hint: "Kondisi rumah jadi kacau."
+            },
+            {
+                id: 38, type: 'uraian', question: "Tuliskan 3 atribut kelengkapan seragam sekolah!",
+                answer: "Topi, Dasi, Ikat Pinggang, Kaos kaki putih, Sepatu hitam, Bet lokasi/nama.", 
+                hint: "Aksesoris seragam."
+            },
+            {
+                id: 39, type: 'uraian', question: "Mengapa kita harus meminta izin sebelum bermain keluar rumah?",
+                answer: "Agar orang tua tidak khawatir, orang tua tahu keberadaan kita, dan menjaga keselamatan.", 
+                hint: "Alasan keamanan."
+            },
+            {
+                id: 40, type: 'uraian', question: "Bagaimana sikapmu jika melihat teman membuang sampah sembarangan di sekolah?",
+                answer: "Menegurnya dengan sopan, mengajaknya membuang ke tempat sampah, atau memungutnya.", 
+                hint: "Sikap peduli lingkungan."
+            }
+        ];
+
+        // Render Questions
+        const container = document.getElementById('questions-container');
+
+        questions.forEach((q, index) => {
+            const card = document.createElement('div');
+            card.className = "quiz-card bg-white rounded-xl shadow-md p-6 border border-red-100 relative overflow-hidden";
+            
+            // Badge Tipe Soal
+            let typeLabel = "";
+            let typeColor = "bg-gray-200 text-gray-700";
+            if(q.type === 'pg') { typeLabel = "Pilihan Ganda"; typeColor = "bg-blue-100 text-blue-700"; }
+            if(q.type === 'tf') { typeLabel = "Benar / Salah"; typeColor = "bg-green-100 text-green-700"; }
+            if(q.type === 'isian') { typeLabel = "Isian Singkat"; typeColor = "bg-yellow-100 text-yellow-700"; }
+            if(q.type === 'pg_kompleks') { typeLabel = "Pilihan Ganda Kompleks"; typeColor = "bg-purple-100 text-purple-700"; }
+            if(q.type === 'uraian') { typeLabel = "Uraian"; typeColor = "bg-orange-100 text-orange-700"; }
+
+            let svgContent = q.svg ? `<div class="flex justify-center my-4">${q.svg}</div>` : '';
+
+            let questionHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-red-600 text-white font-bold">${index + 1}</span>
+                        <span class="text-xs font-semibold px-2 py-1 rounded ${typeColor}">${typeLabel}</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    ${svgContent}
+                    <p class="text-lg text-gray-800 font-medium">${q.question}</p>
+                    ${q.type === 'pg_kompleks' ? '<p class="text-xs text-purple-600 mt-1">*Pilih 2 jawaban yang benar</p>' : ''}
+                </div>
+            `;
+
+            // Render Options based on Type
+            let inputHTML = '';
+            
+            if (q.type === 'pg' || q.type === 'tf') {
+                inputHTML += `<div class="space-y-3">`;
+                q.options.forEach(opt => {
+                    inputHTML += `
+                        <label class="option-container flex items-center p-3 rounded-lg border border-gray-200 hover:border-red-400">
+                            <input type="radio" name="q${q.id}" value="${opt}" class="option-input form-radio h-5 w-5 text-red-600 focus:ring-red-500">
+                            <span class="option-label ml-3 text-gray-700">${opt}</span>
+                        </label>
+                    `;
+                });
+                inputHTML += `</div>`;
+            } 
+            else if (q.type === 'pg_kompleks') {
+                inputHTML += `<div class="space-y-3">`;
+                q.options.forEach(opt => {
+                    inputHTML += `
+                        <label class="option-container flex items-center p-3 rounded-lg border border-gray-200 hover:border-red-400">
+                            <input type="checkbox" name="q${q.id}" value="${opt}" class="option-input form-checkbox h-5 w-5 text-red-600 focus:ring-red-500 rounded">
+                            <span class="option-label ml-3 text-gray-700">${opt}</span>
+                        </label>
+                    `;
+                });
+                inputHTML += `</div>`;
+            }
+            else if (q.type === 'isian') {
+                inputHTML += `
+                    <input type="text" name="q${q.id}" placeholder="Ketik jawaban singkat..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent bg-gray-50">
+                `;
+            }
+            else if (q.type === 'uraian') {
+                inputHTML += `
+                    <textarea name="q${q.id}" rows="3" placeholder="Tulis jawaban lengkapmu di sini..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent bg-gray-50"></textarea>
+                `;
             }
 
-            // Tampilkan hasil, tapi JANGAN sembunyikan kuis
-            document.getElementById('result-section').classList.remove('hidden');
-            
-            // Nonaktifkan semua textarea di bagian kuis
-            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
-            quizTextareas.forEach(textarea => {
-                textarea.disabled = true;
-                textarea.style.backgroundColor = '#f9fafb'; // Ubah warna latar
-            });
-            
-            // Sembunyikan tombol submit
-            document.getElementById('submit-button').classList.add('hidden');
+            // Hint & Feedback Area (Hidden initially)
+            inputHTML += `
+                <div id="feedback-${q.id}" class="mt-4 hidden p-4 rounded-lg bg-gray-100 text-sm">
+                    <p class="font-bold mb-1">Kunci Jawaban:</p>
+                    <p class="text-red-700 font-semibold">${Array.isArray(q.answer) ? q.answer.join(", ") : q.answer}</p>
+                    <p class="text-gray-500 text-xs mt-2 italic">Hint: ${q.hint}</p>
+                </div>
+            `;
 
-            // Gulir ke bagian hasil
-            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+            card.innerHTML = questionHTML + inputHTML;
+            container.appendChild(card);
         });
 
-        document.getElementById('restart-button').addEventListener('click', function() {
-            // Kosongkan semua jawaban
-            for (let i = 1; i <= 15; i++) {
-                document.getElementById('q' + i).value = '';
-                document.getElementById('r' + i).value = '';
-            }
+        // Handle Submission
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let score = 0;
+            let totalObjective = 0;
+            const formData = new FormData(e.target);
+            const resultDetails = document.getElementById('resultDetails');
+            resultDetails.innerHTML = ""; // Clear prev results
 
-            // Sembunyikan hasil
-            document.getElementById('result-section').classList.add('hidden');
+            questions.forEach(q => {
+                const feedbackEl = document.getElementById(`feedback-${q.id}`);
+                feedbackEl.classList.remove('hidden'); // Show answers
+                
+                let isCorrect = false;
+                let userAnswer = "";
 
-            // Aktifkan kembali semua textarea di bagian kuis
-            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
-            quizTextareas.forEach(textarea => {
-                textarea.disabled = false;
-                textarea.style.backgroundColor = '#ffffff'; // Kembalikan warna
+                // Logic Penilaian
+                if (q.type === 'pg' || q.type === 'tf') {
+                    totalObjective++;
+                    userAnswer = formData.get(`q${q.id}`);
+                    if (userAnswer === q.answer) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-red-100', 'border', 'border-red-300');
+                    } else {
+                        feedbackEl.classList.add('bg-gray-100', 'border', 'border-gray-300');
+                    }
+                } 
+                else if (q.type === 'pg_kompleks') {
+                    totalObjective++;
+                    // Get all checked values
+                    const checked = formData.getAll(`q${q.id}`);
+                    userAnswer = checked.join(", ");
+                    
+                    // Simple array comparison (must match exactly)
+                    const sortedUser = checked.sort().toString();
+                    const sortedAns = q.answer.sort().toString();
+                    
+                    if (sortedUser === sortedAns && checked.length > 0) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-red-100', 'border', 'border-red-300');
+                    } else {
+                        feedbackEl.classList.add('bg-gray-100', 'border', 'border-gray-300');
+                    }
+                }
+                else if (q.type === 'isian') {
+                    totalObjective++;
+                    userAnswer = formData.get(`q${q.id}`)?.trim() || "";
+                    if (userAnswer.toLowerCase() === q.answer.toLowerCase()) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-red-100', 'border', 'border-red-300');
+                    } else {
+                        feedbackEl.classList.add('bg-gray-100', 'border', 'border-gray-300');
+                    }
+                }
+                else if (q.type === 'uraian') {
+                    // Uraian tidak dinilai otomatis
+                    userAnswer = formData.get(`q${q.id}`);
+                    feedbackEl.classList.add('bg-orange-50', 'border', 'border-orange-200');
+                    feedbackEl.innerHTML += `<p class='text-orange-600 font-bold mt-2'>*Cek jawabanmu dengan kunci jawaban di atas.</p>`;
+                }
+
+                // Add simple summary to modal
+                if(q.type !== 'uraian') {
+                    const icon = isCorrect ? "✅" : "❌";
+                    const item = document.createElement('div');
+                    item.innerHTML = `<span>${icon} No. ${q.id}</span>`;
+                    resultDetails.appendChild(item);
+                }
             });
 
-            // Tampilkan kembali tombol submit
-            document.getElementById('submit-button').classList.remove('hidden');
+            // Calculate Score (Scale 0-100 for objective parts)
+            let finalScore = 0;
+            if (totalObjective > 0) {
+                finalScore = Math.round((score / totalObjective) * 100);
+            }
             
-            // Gulir ke atas
-            window.scrollTo(0, 0);
+            // Show Modal
+            document.getElementById('finalScore').textContent = finalScore;
+            document.getElementById('resultModal').classList.remove('hidden');
+        });
+
+        // Close Modal
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('resultModal').classList.add('hidden');
+            // Scroll to top to review
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
-
 </body>
 </html>
