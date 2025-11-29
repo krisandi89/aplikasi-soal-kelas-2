@@ -3,339 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis PAI - Kelas 2</title>
+    <title>Latihan Soal PAI - Salat, Azan, & Nabi Idris A.S.</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
+            font-family: 'Nunito', sans-serif;
+            background-color: #ecfdf5; /* Emerald green background */
         }
-        .quiz-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
         }
-        .question-card {
-            background-color: #fafafa;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        .quiz-card {
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
         }
-        .answer-textarea {
-            width: 100%;
-            min-height: 80px;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            padding: 0.75rem;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
+        .quiz-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .answer-textarea:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-            outline: none;
+        .quiz-card.answered {
+            border-left-color: #10b981;
         }
-        .submit-btn {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ffffff;
-            background-color: #3b82f6;
-            border: none;
-            border-radius: 0.5rem;
+        .option-container {
             cursor: pointer;
             transition: background-color 0.2s;
         }
-        .submit-btn:hover {
-            background-color: #2563eb;
-        }
-        .result-card {
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #e5e7eb;
-        }
-        .correct-answer {
+        .option-container:hover {
             background-color: #d1fae5;
-            border: 1px solid #34d399;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            font-weight: 600;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            color: #3b82f6;
-            text-decoration: none;
+        .option-input:checked + .option-label {
+            color: #047857;
+            font-weight: bold;
         }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        /* Style untuk tulisan Arab */
-        .arabic {
+        .arabic-text {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.4em;
             direction: rtl;
-            font-size: 1.5rem; /* 24px */
-            font-family: 'Times New Roman', Times, serif;
-            text-align: right;
-            margin-top: 0.5rem;
-            color: #374151;
+        }
+        .result-box {
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
+<body class="bg-emerald-50 min-h-screen pb-20">
 
-    <div class="quiz-container">
-        
-        <!-- Bagian Kuis -->
-        <div id="quiz-section">
-            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
-            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis PAI (Agama Islam)</h1>
-            <p class="text-center text-gray-600 mb-8">Jawablah 15 pertanyaan di bawah ini.</p>
-
-            <form id="quiz-form">
-                <!-- Soal 1 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 1</p>
-                    <p class="text-gray-700">Apa arti salat menurut bahasa?</p>
-                    <textarea id="q1" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 2 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 2</p>
-                    <p class="text-gray-700">Salat fardu hukumnya apa? Apa akibatnya jika meninggalkannya?</p>
-                    <textarea id="q2" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 3 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 3</p>
-                    <p class="text-gray-700">Berapa jumlah total rakaat salat fardu dalam sehari?</p>
-                    <textarea id="q3" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 4 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 4</p>
-                    <p class="text-gray-700">Sebutkan 5 (lima) waktu salat fardu!</p>
-                    <textarea id="q4" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 5 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 5</p>
-                    <p class="text-gray-700">Sebutkan 3 (tiga) syarat *wajib* salat!</p>
-                    <textarea id="q5" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 6 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 6</p>
-                    <p class="text-gray-700">Sebutkan 3 (tiga) syarat *sah* salat!</p>
-                    <textarea id="q6" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 7 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 7</p>
-                    <p class="text-gray-700">Apa bacaan yang diucapkan saat *Takbiratulihram*?</p>
-                    <p class="arabic">...?</p>
-                    <textarea id="q7" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 8 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 8</p>
-                    <p class="text-gray-700">Apa bacaan tasbih yang diucapkan saat *Rukuk*?</p>
-                    <p class="arabic">...?</p>
-                    <textarea id="q8" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 9 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 9</p>
-                    <p class="text-gray-700">Apa bacaan tasbih yang diucapkan saat *Sujud*?</p>
-                    <p class="arabic">...?</p>
-                    <textarea id="q9" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 10 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 10</p>
-                    <p class="text-gray-700">Apa bacaan yang diucapkan saat *Salam*?</p>
-                    <p class="arabic">...?</p>
-                    <textarea id="q10" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 11 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 11</p>
-                    <p class="text-gray-700">Apa arti dari Azan?</p>
-                    <textarea id="q11" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 12 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 12</p>
-                    <p class="text-gray-700">Orang yang mengumandangkan azan disebut...</p>
-                    <textarea id="q12" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 13 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 13</p>
-                    <p class="text-gray-700">Apa bacaan tambahan dalam Azan Subuh?</p>
-                    <p class="arabic">...?</p>
-                    <textarea id="q13" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 14 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 14</p>
-                    <p class="text-gray-700">Apa bacaan dalam Ikamah yang tidak ada dalam Azan?</p>
-                    <p class="arabic">...?</p>
-                    <textarea id="q14" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 15 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 15</p>
-                    <p class="text-gray-700">Siapakah nabi kedua setelah Nabi Adam A.S. dan apa gelar yang dimilikinya?</p>
-                    <textarea id="q15" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <button type="button" id="submit-button" class="submit-btn">
-                    Selesai! Lihat Kunci Jawaban
-                </button>
-            </form>
+    <!-- Header -->
+    <header class="bg-emerald-600 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold">Latihan Soal PAI</h1>
+                <p class="text-emerald-100 text-sm md:text-base">Bab 4 & 5: Salat, Azan, Ikamah, Nabi Idris A.S.</p>
+            </div>
+            <div class="text-right hidden md:block">
+                <p class="font-semibold">Kelas 2 SD</p>
+                <p class="text-xs text-emerald-200">40 Soal</p>
+            </div>
         </div>
+    </header>
 
-        <!-- Bagian Hasil -->
-        <div id="result-section" class="hidden">
-            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
-            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
-            <p class="text-center text-gray-600 mb-8">Kerja bagus! Minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini.</p>
-
-            <!-- Loop Hasil 1-15 -->
-            <script>
-                // Data Kunci Jawaban
-                const correctAnswers = {
-                    r1: "Doa atau memohon.",
-                    r2: "Wajib. Jika meninggalkan akan berdosa.",
-                    r3: "17 (tujuh belas) rakaat.",
-                    r4: "Subuh, Zuhur, Asar, Magrib, dan Isya.",
-                    r5: "Beragama Islam, Balig, dan Berakal sehat.",
-                    r6: "Suci badan/pakaian/tempat, suci dari hadas, menutup aurat, menghadap kiblat, masuk waktu, rukun.",
-                    r7: '<p class="arabic">اللَّهُ أَكْبَرُ</p> (Allahu Akbar)',
-                    r8: '<p class="arabic">سُبْحَانَ رَبِّيَ الْعَظِيمِ وَبِحَمْدِهِ</p>',
-                    r9: '<p class="arabic">سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ</p>',
-                    r10: '<p class="arabic">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ</p>',
-                    r11: "Seruan atau panggilan (bahwa telah masuk waktu salat fardu).",
-                    r12: "Muazin.",
-                    r13: '<p class="arabic">الصَّلَاةُ خَيْرٌ مِّنَ النَّوْمِ</p> (Ash-shalātu khairum minan-naūm)',
-                    r14: '<p class="arabic">قَدْ قَامَتِ الصَّلَاةُ</p> (Qad qāmatish-shalāh)',
-                    r15: "Nabi Idris A.S. Gelarnya adalah Asadul Usud (Singa dari segala singa)."
-                };
-
-                // Data Pertanyaan
-                const questions = {
-                    q1: "Apa arti salat menurut bahasa?",
-                    q2: "Salat fardu hukumnya apa? Apa akibatnya jika meninggalkannya?",
-                    q3: "Berapa jumlah total rakaat salat fardu dalam sehari?",
-                    q4: "Sebutkan 5 (lima) waktu salat fardu!",
-                    q5: "Sebutkan 3 (tiga) syarat *wajib* salat!",
-                    q6: "Sebutkan 3 (tiga) syarat *sah* salat!",
-                    q7: "Apa bacaan yang diucapkan saat *Takbiratulihram*?",
-                    q8: "Apa bacaan tasbih yang diucapkan saat *Rukuk*?",
-                    q9: "Apa bacaan tasbih yang diucapkan saat *Sujud*?",
-                    q10: "Apa bacaan yang diucapkan saat *Salam*?",
-                    q11: "Apa arti dari Azan?",
-                    q12: "Orang yang mengumandangkan azan disebut...",
-                    q13: "Apa bacaan tambahan dalam Azan Subuh?",
-                    q14: "Apa bacaan dalam Ikamah yang tidak ada dalam Azan?",
-                    q15: "Siapakah nabi kedua setelah Nabi Adam A.S. dan apa gelar yang dimilikinya?"
-                };
-
-                // Generate 15 result cards
-                for (let i = 1; i <= 15; i++) {
-                    document.write(`
-                        <div class="result-card">
-                            <p class="text-lg font-semibold mb-2">Soal ${i}</p>
-                            <p class="text-gray-700 mb-3">${questions['q'+i]}</p>
-                            <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                            <textarea id="r${i}" class="answer-textarea" readonly disabled style="background-color: #f9fafb;"></textarea>
-                            <div class="correct-answer">
-                                Kunci Jawaban: ${correctAnswers['r'+i]}
-                            </div>
-                        </div>
-                    `);
-                }
-            </script>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 mt-6">
+        <form id="quizForm" class="space-y-6">
             
-            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
-                Ulangi Kuis
-            </button>
+            <!-- Container Soal -->
+            <div id="questions-container"></div>
+
+            <!-- Tombol Submit -->
+            <div class="mt-10 mb-20 text-center">
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transform transition hover:scale-105 text-lg flex items-center justify-center mx-auto gap-2">
+                    <span>✅ Selesai & Lihat Nilai</span>
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Modal Hasil -->
+    <div id="resultModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto result-box">
+            <div class="p-6 md:p-8">
+                <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-full bg-emerald-100 mb-4">
+                        <span class="text-4xl">🕌</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Hasil Latihan</h2>
+                    <p class="text-gray-600">Alhamdulillah, kamu sudah selesai!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-center">
+                        <p class="text-sm text-blue-600 font-semibold uppercase tracking-wider">Skor Objektif</p>
+                        <p id="finalScore" class="text-4xl font-bold text-blue-800">0</p>
+                        <p class="text-xs text-blue-500 mt-1">(PG, Benar/Salah, Isian, PG Kompleks)</p>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-200 text-center">
+                        <p class="text-sm text-orange-600 font-semibold uppercase tracking-wider">Soal Uraian</p>
+                        <p class="text-lg font-bold text-orange-800">Cek Manual</p>
+                        <p class="text-xs text-orange-500 mt-1">(Minta orang tua/guru menilai)</p>
+                    </div>
+                </div>
+
+                <!-- Rincian -->
+                <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                    <h3 class="font-bold text-gray-700 mb-2">Rincian Jawaban:</h3>
+                    <div id="resultDetails" class="space-y-2 text-sm text-gray-600 max-h-40 overflow-y-auto">
+                        <!-- Detail will be injected here -->
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-3 justify-center">
+                    <button id="closeModalBtn" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition">
+                        Tutup & Lihat Pembahasan
+                    </button>
+                    <button onclick="location.reload()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition">
+                        Ulangi Latihan
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function() {
-            // Salin 15 jawaban ke bagian hasil
-            for (let i = 1; i <= 15; i++) {
-                document.getElementById('r' + i).value = document.getElementById('q' + i).value;
+        // Data Soal (40 Soal berdasarkan Kisi-kisi PAI)
+        const questions = [
+            // --- BAGIAN 1: PILIHAN GANDA (1-12) ---
+            {
+                id: 1, type: 'pg', question: "Salat menurut bahasa artinya adalah ...",
+                options: ["Bekerja", "Doa atau memohon", "Bernyanyi", "Tidur"], answer: "Doa atau memohon",
+                hint: "Salat artinya berdoa kepada Allah."
+            },
+            {
+                id: 2, type: 'pg', question: "Hukum melaksanakan salat fardu bagi umat Islam adalah ...",
+                options: ["Sunah", "Haram", "Wajib", "Makruh"], answer: "Wajib",
+                hint: "Jika ditinggalkan akan berdosa."
+            },
+            {
+                id: 3, type: 'pg', question: "Dalam sehari semalam, jumlah rakaat salat fardu adalah ...",
+                options: ["10 rakaat", "15 rakaat", "17 rakaat", "20 rakaat"], answer: "17 rakaat",
+                hint: "Subuh(2) + Zuhur(4) + Asar(4) + Magrib(3) + Isya(4)."
+            },
+            {
+                id: 4, type: 'pg', question: "Salat yang dikerjakan setelah matahari terbenam dan berjumlah 3 rakaat adalah salat ...",
+                options: ["Subuh", "Zuhur", "Magrib", "Isya"], answer: "Magrib",
+                hint: "Waktunya sore menjelang malam, 3 rakaat."
+            },
+            {
+                id: 5, type: 'pg', question: "Orang yang mengumandangkan azan disebut ...",
+                options: ["Imam", "Makmum", "Muazin", "Khatib"], answer: "Muazin",
+                hint: "Orang yang menyerukan panggilan salat."
+            },
+            {
+                id: 6, type: 'pg', question: "Nabi Idris A.S. adalah nabi urutan ke ... setelah Nabi Adam A.S.",
+                options: ["Satu", "Dua", "Tiga", "Empat"], answer: "Dua",
+                hint: "Adam, ..., Nuh, Hud."
+            },
+            {
+                id: 7, type: 'pg', question: "Salah satu hal yang membatalkan salat adalah ...",
+                options: ["Berniat", "Buang angin (kentut)", "Membaca Al-Fatihah", "Berdiri tegak"], answer: "Buang angin (kentut)",
+                hint: "Mengeluarkan sesuatu dari kubul/dubur."
+            },
+            {
+                id: 8, type: 'pg', question: "Gerakan bangun dari rukuk dalam salat disebut ...",
+                options: ["Sujud", "Iktidal", "Tasyahud", "Salam"], answer: "Iktidal",
+                hint: "Berdiri sebentar setelah rukuk."
+            },
+            {
+                id: 9, type: 'pg', question: "Gelar yang diberikan kepada Nabi Idris A.S. adalah 'Asadul Usud' yang artinya ...",
+                options: ["Singa padang pasir", "Singa dari segala singa", "Harimau yang kuat", "Raja hutan"], answer: "Singa dari segala singa",
+                hint: "Karena keberaniannya melawan kaum yang ingkar."
+            },
+            {
+                id: 10, type: 'pg', question: "Seruan sebagai tanda salat akan segera dimulai (berdiri) disebut ...",
+                options: ["Azan", "Ikamah", "Takbir", "Tasbih"], answer: "Ikamah",
+                hint: "Dilakukan setelah azan, sebelum salat."
+            },
+            {
+                id: 11, type: 'pg', question: "Bacaan 'Subhana rabbiyal a'la wa bihamdih' dibaca ketika ...",
+                options: ["Rukuk", "Iktidal", "Sujud", "Duduk"], answer: "Sujud",
+                hint: "Saat dahi menempel di lantai."
+            },
+            {
+                id: 12, type: 'pg', question: "Nabi Idris A.S. berdakwah kepada kaum ...",
+                options: ["Bani Qabil", "Bani Israil", "Bani Quraisy", "Kaum 'Ad"], answer: "Bani Qabil",
+                hint: "Kaum keturunan Qabil yang menyembah api."
+            },
+
+            // --- BAGIAN 2: BENAR / SALAH (13-22) ---
+            {
+                id: 13, type: 'tf', question: "Salat Subuh berjumlah 4 rakaat.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Subuh hanya 2 rakaat."
+            },
+            {
+                id: 14, type: 'tf', question: "Azan dilakukan dengan suara yang lantang dan keras.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Agar terdengar oleh orang banyak."
+            },
+            {
+                id: 15, type: 'tf', question: "Nabi Idris A.S. memiliki kepandaian menjahit dan menunggang kuda.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Beliau nabi yang sangat pandai."
+            },
+            {
+                id: 16, type: 'tf', question: "Makan dan minum dengan sengaja tidak membatalkan salat.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Makan minum membatalkan salat."
+            },
+            {
+                id: 17, type: 'tf', question: "Takbiratulihram adalah gerakan pertama dalam salat.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Membaca Allahu Akbar sambil angkat tangan."
+            },
+            {
+                id: 18, type: 'tf', question: "Salat Isya dikerjakan pada siang hari.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Isya dikerjakan malam hari."
+            },
+            {
+                id: 19, type: 'tf', question: "Menutup aurat adalah salah satu syarat sah salat.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Pakaian harus sopan dan menutup aurat."
+            },
+            {
+                id: 20, type: 'tf', question: "Ikamah dibaca lebih pelan daripada azan.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Ikamah dibaca lebih cepat, tapi tetap terdengar."
+            },
+            {
+                id: 21, type: 'tf', question: "Nabi Idris A.S. pernah didatangi oleh Malaikat Izrail (pencabut nyawa).",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Beliau berteman dengan Malaikat Izrail."
+            },
+            {
+                id: 22, type: 'tf', question: "Tertawa terbahak-bahak membuat salat batal.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Salat harus khusyuk."
+            },
+
+            // --- BAGIAN 3: ISIAN SINGKAT (23-30) ---
+            {
+                id: 23, type: 'isian', question: "Salat fardu yang dikerjakan pada waktu siang hari adalah salat ...",
+                answer: "zuhur", hint: "4 rakaat di siang hari."
+            },
+            {
+                id: 24, type: 'isian', question: "Bacaan takbiratulihram berbunyi 'Allahu ...'",
+                answer: "akbar", hint: "Artinya Allah Maha Besar."
+            },
+            {
+                id: 25, type: 'isian', question: "Sebelum salat, kita harus bersuci dengan cara ber-...",
+                answer: "wudu", hint: "Membasuh muka, tangan, dll."
+            },
+            {
+                id: 26, type: 'isian', question: "Nabi Idris A.S. adalah keturunan keenam dari Nabi ...",
+                answer: "adam", hint: "Manusia pertama."
+            },
+            {
+                id: 27, type: 'isian', question: "Gerakan salat yang dilakukan dengan membungkukkan badan dan tangan memegang lutut disebut ...",
+                answer: "rukuk", hint: "Setelah membaca Al-Fatihah."
+            },
+            {
+                id: 28, type: 'isian', question: "Tempat ibadah umat Islam disebut ...",
+                answer: "masjid", hint: "Tempat azan dikumandangkan."
+            },
+            {
+                id: 29, type: 'isian', question: "Lafal tambahan pada azan Subuh berbunyi: 'Asshalatu khairum minan ...'",
+                answer: "naum", hint: "Artinya salat lebih baik dari tidur."
+            },
+            {
+                id: 30, type: 'isian', question: "Arah kiblat umat Islam menghadap ke ...",
+                answer: "kabah", hint: "Bangunan suci di Mekah."
+            },
+
+            // --- BAGIAN 4: PILIHAN GANDA KOMPLEKS (31-35) ---
+            {
+                id: 31, type: 'pg_kompleks', question: "Pilih 2 hal yang membatalkan salat:",
+                options: ["Buang angin", "Membaca Al-Fatihah", "Berbicara sengaja", "Berdiri tegak"], answer: ["Buang angin", "Berbicara sengaja"],
+                hint: "Hal yang dilarang saat salat."
+            },
+            {
+                id: 32, type: 'pg_kompleks', question: "Pilih 2 nama salat fardu:",
+                options: ["Subuh", "Tahajud", "Duha", "Asar"], answer: ["Subuh", "Asar"],
+                hint: "Salat yang wajib 5 waktu."
+            },
+            {
+                id: 33, type: 'pg_kompleks', question: "Pilih 2 kepandaian Nabi Idris A.S.:",
+                options: ["Membuat kapal", "Menjahit", "Membelah lautan", "Menunggang kuda"], answer: ["Menjahit", "Menunggang kuda"],
+                hint: "Keahlian khusus Nabi Idris."
+            },
+            {
+                id: 34, type: 'pg_kompleks', question: "Pilih 2 syarat sah salat:",
+                options: ["Menghadap kiblat", "Kaya raya", "Menutup aurat", "Berwajah tampan"], answer: ["Menghadap kiblat", "Menutup aurat"],
+                hint: "Syarat agar salat diterima."
+            },
+            {
+                id: 35, type: 'pg_kompleks', question: "Pilih 2 rukun salat:",
+                options: ["Niat", "Azan", "Sujud", "Wudu"], answer: ["Niat", "Sujud"],
+                hint: "Bagian inti dari salat."
+            },
+
+            // --- BAGIAN 5: URAIAN (36-40) ---
+            {
+                id: 36, type: 'uraian', question: "Sebutkan 3 nama salat fardu beserta jumlah rakaatnya!",
+                answer: "Subuh (2), Zuhur (4), Asar (4), Magrib (3), Isya (4).", 
+                hint: "Contoh: Subuh 2 rakaat."
+            },
+            {
+                id: 37, type: 'uraian', question: "Apa arti dari bacaan Ikamah?",
+                answer: "Seruan bahwa salat akan segera didirikan/dimulai.", 
+                hint: "Tanda salat akan mulai."
+            },
+            {
+                id: 38, type: 'uraian', question: "Sebutkan 2 sikap teladan dari Nabi Idris A.S.!",
+                answer: "Rajin belajar, tekun beribadah, tidak mudah putus asa, berani.", 
+                hint: "Sifat baik Nabi Idris."
+            },
+            {
+                id: 39, type: 'uraian', question: "Apa yang kamu lakukan jika mendengar suara azan?",
+                answer: "Menghentikan kegiatan, menjawab azan, dan segera bersiap ke masjid.", 
+                hint: "Sikap anak saleh saat azan."
+            },
+            {
+                id: 40, type: 'uraian', question: "Tuliskan arti dari 'Allahu Akbar'!",
+                answer: "Allah Maha Besar.", 
+                hint: "Arti bacaan takbir."
+            }
+        ];
+
+        // Render Questions
+        const container = document.getElementById('questions-container');
+
+        questions.forEach((q, index) => {
+            const card = document.createElement('div');
+            card.className = "quiz-card bg-white rounded-xl shadow-md p-6 border border-emerald-100 relative overflow-hidden";
+            
+            // Badge Tipe Soal
+            let typeLabel = "";
+            let typeColor = "bg-gray-200 text-gray-700";
+            if(q.type === 'pg') { typeLabel = "Pilihan Ganda"; typeColor = "bg-blue-100 text-blue-700"; }
+            if(q.type === 'tf') { typeLabel = "Benar / Salah"; typeColor = "bg-purple-100 text-purple-700"; }
+            if(q.type === 'isian') { typeLabel = "Isian Singkat"; typeColor = "bg-yellow-100 text-yellow-700"; }
+            if(q.type === 'pg_kompleks') { typeLabel = "Pilihan Ganda Kompleks"; typeColor = "bg-pink-100 text-pink-700"; }
+            if(q.type === 'uraian') { typeLabel = "Uraian"; typeColor = "bg-orange-100 text-orange-700"; }
+
+            let questionHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-600 text-white font-bold">${index + 1}</span>
+                        <span class="text-xs font-semibold px-2 py-1 rounded ${typeColor}">${typeLabel}</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="text-lg text-gray-800 font-medium">${q.question}</p>
+                    ${q.type === 'pg_kompleks' ? '<p class="text-xs text-pink-600 mt-1">*Pilih 2 jawaban yang benar</p>' : ''}
+                </div>
+            `;
+
+            // Render Options based on Type
+            let inputHTML = '';
+            
+            if (q.type === 'pg' || q.type === 'tf') {
+                inputHTML += `<div class="space-y-3">`;
+                q.options.forEach(opt => {
+                    inputHTML += `
+                        <label class="option-container flex items-center p-3 rounded-lg border border-gray-200 hover:border-emerald-400">
+                            <input type="radio" name="q${q.id}" value="${opt}" class="option-input form-radio h-5 w-5 text-emerald-600 focus:ring-emerald-500">
+                            <span class="option-label ml-3 text-gray-700">${opt}</span>
+                        </label>
+                    `;
+                });
+                inputHTML += `</div>`;
+            } 
+            else if (q.type === 'pg_kompleks') {
+                inputHTML += `<div class="space-y-3">`;
+                q.options.forEach(opt => {
+                    inputHTML += `
+                        <label class="option-container flex items-center p-3 rounded-lg border border-gray-200 hover:border-emerald-400">
+                            <input type="checkbox" name="q${q.id}" value="${opt}" class="option-input form-checkbox h-5 w-5 text-emerald-600 focus:ring-emerald-500 rounded">
+                            <span class="option-label ml-3 text-gray-700">${opt}</span>
+                        </label>
+                    `;
+                });
+                inputHTML += `</div>`;
+            }
+            else if (q.type === 'isian') {
+                inputHTML += `
+                    <input type="text" name="q${q.id}" placeholder="Ketik jawaban singkat..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-gray-50">
+                `;
+            }
+            else if (q.type === 'uraian') {
+                inputHTML += `
+                    <textarea name="q${q.id}" rows="3" placeholder="Tulis jawaban lengkapmu di sini..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-gray-50"></textarea>
+                `;
             }
 
-            // Tampilkan hasil, tapi JANGAN sembunyikan kuis
-            document.getElementById('result-section').classList.remove('hidden');
-            
-            // Nonaktifkan semua textarea di bagian kuis
-            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
-            quizTextareas.forEach(textarea => {
-                textarea.disabled = true;
-                textarea.style.backgroundColor = '#f9fafb'; // Ubah warna latar
-            });
-            
-            // Sembunyikan tombol submit
-            document.getElementById('submit-button').classList.add('hidden');
+            // Hint & Feedback Area (Hidden initially)
+            inputHTML += `
+                <div id="feedback-${q.id}" class="mt-4 hidden p-4 rounded-lg bg-gray-100 text-sm">
+                    <p class="font-bold mb-1">Kunci Jawaban:</p>
+                    <p class="text-emerald-700 font-semibold">${Array.isArray(q.answer) ? q.answer.join(", ") : q.answer}</p>
+                    <p class="text-gray-500 text-xs mt-2 italic">Hint: ${q.hint}</p>
+                </div>
+            `;
 
-            // Gulir ke bagian hasil
-            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+            card.innerHTML = questionHTML + inputHTML;
+            container.appendChild(card);
         });
 
-        document.getElementById('restart-button').addEventListener('click', function() {
-            // Kosongkan semua jawaban
-            for (let i = 1; i <= 15; i++) {
-                document.getElementById('q' + i).value = '';
-                document.getElementById('r' + i).value = '';
-            }
+        // Handle Submission
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let score = 0;
+            let totalObjective = 0;
+            const formData = new FormData(e.target);
+            const resultDetails = document.getElementById('resultDetails');
+            resultDetails.innerHTML = ""; // Clear prev results
 
-            // Sembunyikan hasil
-            document.getElementById('result-section').classList.add('hidden');
+            questions.forEach(q => {
+                const feedbackEl = document.getElementById(`feedback-${q.id}`);
+                feedbackEl.classList.remove('hidden'); // Show answers
+                
+                let isCorrect = false;
+                let userAnswer = "";
 
-            // Aktifkan kembali semua textarea di bagian kuis
-            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
-            quizTextareas.forEach(textarea => {
-                textarea.disabled = false;
-                textarea.style.backgroundColor = '#ffffff'; // Kembalikan warna
+                // Logic Penilaian
+                if (q.type === 'pg' || q.type === 'tf') {
+                    totalObjective++;
+                    userAnswer = formData.get(`q${q.id}`);
+                    if (userAnswer === q.answer) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-emerald-100', 'border', 'border-emerald-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                } 
+                else if (q.type === 'pg_kompleks') {
+                    totalObjective++;
+                    // Get all checked values
+                    const checked = formData.getAll(`q${q.id}`);
+                    userAnswer = checked.join(", ");
+                    
+                    // Simple array comparison (must match exactly)
+                    // Sort both arrays to compare content
+                    const sortedUser = checked.sort().toString();
+                    const sortedAns = q.answer.sort().toString();
+                    
+                    if (sortedUser === sortedAns && checked.length > 0) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-emerald-100', 'border', 'border-emerald-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                }
+                else if (q.type === 'isian') {
+                    totalObjective++;
+                    userAnswer = formData.get(`q${q.id}`)?.trim() || "";
+                    if (userAnswer.toLowerCase() === q.answer.toLowerCase()) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-emerald-100', 'border', 'border-emerald-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                }
+                else if (q.type === 'uraian') {
+                    // Uraian tidak dinilai otomatis
+                    userAnswer = formData.get(`q${q.id}`);
+                    feedbackEl.classList.add('bg-orange-50', 'border', 'border-orange-200');
+                    feedbackEl.innerHTML += `<p class='text-orange-600 font-bold mt-2'>*Cek jawabanmu dengan kunci jawaban di atas.</p>`;
+                }
+
+                // Add simple summary to modal
+                if(q.type !== 'uraian') {
+                    const icon = isCorrect ? "✅" : "❌";
+                    const item = document.createElement('div');
+                    item.innerHTML = `<span>${icon} No. ${q.id}</span>`;
+                    resultDetails.appendChild(item);
+                }
             });
 
-            // Tampilkan kembali tombol submit
-            document.getElementById('submit-button').classList.remove('hidden');
+            // Calculate Score (Scale 0-100 for objective parts)
+            let finalScore = 0;
+            if (totalObjective > 0) {
+                finalScore = Math.round((score / totalObjective) * 100);
+            }
             
-            // Gulir ke atas
-            window.scrollTo(0, 0);
+            // Show Modal
+            document.getElementById('finalScore').textContent = finalScore;
+            document.getElementById('resultModal').classList.remove('hidden');
+        });
+
+        // Close Modal
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('resultModal').classList.add('hidden');
+            // Scroll to top to review
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
-
 </body>
 </html>
