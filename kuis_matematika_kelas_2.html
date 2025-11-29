@@ -3,372 +3,535 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Matematika Kelas 2 - Bangun Datar & Ruang</title>
+    <title>Latihan Soal Matematika - Bangun Datar, Ruang, & Pola</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Nunito', sans-serif;
+            background-color: #eff6ff; /* Blue background */
         }
-        .quiz-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #f9fafb;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
         }
-        .question-card {
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .quiz-card {
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
         }
-        .question-svg {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1rem auto;
-            display: block;
+        .quiz-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .answer-textarea {
-            width: 100%;
-            min-height: 80px;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            padding: 0.75rem;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
+        .quiz-card.answered {
+            border-left-color: #2563eb;
         }
-        .answer-textarea:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-            outline: none;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ffffff;
-            background-color: #3b82f6;
-            border: none;
-            border-radius: 0.5rem;
+        .option-container {
             cursor: pointer;
             transition: background-color 0.2s;
         }
-        .submit-btn:hover {
-            background-color: #2563eb;
+        .option-container:hover {
+            background-color: #dbeafe;
         }
-        .result-card {
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .option-input:checked + .option-label {
+            color: #1d4ed8;
+            font-weight: bold;
         }
-        .correct-answer {
-            background-color: #d1fae5;
-            border: 1px solid #34d399;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            font-weight: 600;
+        .result-box {
+            animation: slideIn 0.5s ease-out;
+        }
+        .question-svg {
+            display: block;
+            margin: 10px auto;
+            max-width: 150px;
+            height: auto;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-blue-50 min-h-screen pb-20">
 
-    <div class="quiz-container">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis Matematika Kelas 2</h1>
-        <p class="text-center text-gray-600 mb-8">Jawablah pertanyaan di bawah ini dengan jawabanmu sendiri!</p>
-
-        <!-- Bagian Kuis -->
-        <div id="quiz-section">
-            <form id="quiz-form">
-                <!-- Soal 1 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 1</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="50,10 90,90 10,90" fill="#f87171" stroke="#b91c1c" stroke-width="2"/>
-                    </svg>
-                    <p class="text-gray-700">Perhatikan gambar segitiga di atas. Ada berapa banyak sisi, sudut, dan titik sudutnya?</p>
-                    <textarea id="q1" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 2 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 2</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="10" y="10" width="80" height="80" fill="#60a5fa" stroke="#1d4ed8" stroke-width="2"/>
-                    </svg>
-                    <p class="text-gray-700">Perhatikan gambar persegi di atas. Ada berapa banyak sisi, sudut, dan titik sudutnya?</p>
-                    <textarea id="q2" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 3 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 3</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="50,5 95,35 75,95 25,95 5,35" fill="#34d399" stroke="#047857" stroke-width="2"/>
-                    </svg>
-                    <p class="text-gray-700">Bangun datar yang memiliki 5 sisi disebut apa?</p>
-                    <textarea id="q3" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 4 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 4</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="25,10 75,10 95,50 75,90 25,90 5,50" fill="#facc15" stroke="#a16207" stroke-width="2"/>
-                    </svg>
-                    <p class="text-gray-700">Bangun datar yang memiliki 6 sisi disebut apa?</p>
-                    <textarea id="q4" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 5 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 5</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <g>
-                            <rect x="20" y="35" width="50" height="50" fill="#c084fc" stroke="#7e22ce" stroke-width="2"/>
-                            <polygon points="20,35 70,35 90,15 40,15" fill="#c084fc" stroke="#7e22ce" stroke-width="2"/>
-                            <polygon points="70,35 70,85 90,65 90,15" fill="#c084fc" stroke="#7e22ce" stroke-width="2"/>
-                        </g>
-                    </svg>
-                    <p class="text-gray-700">Bangun ruang kubus memiliki berapa banyak sisi?</p>
-                    <textarea id="q5" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 6 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 6</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                         <g>
-                            <rect x="10" y="40" width="70" height="50" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
-                            <polygon points="10,40 80,40 95,20 25,20" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
-                            <polygon points="80,40 80,90 95,70 95,20" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
-                        </g>
-                    </svg>
-                    <p class="text-gray-700">Bangun ruang balok memiliki berapa banyak rusuk?</p>
-                    <textarea id="q7" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 7 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 7</p>
-                    <svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="40" fill="#f87171" stroke="#b91c1c" stroke-width="2"/>
-                    </svg>
-                    <p class="text-gray-700">Apa nama bangun ruang yang bentuknya seperti bola?</p>
-                    <textarea id="q8" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Gambar Peta untuk Soal 8-10 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2 text-center">Perhatikan denah di bawah ini untuk menjawab Soal 8, 9, dan 10.</p>
-                    <p class="text-sm text-gray-600 text-center mb-4">(Posisi kanan dan kiri dilihat oleh pembaca)</p>
-                    <svg class="w-full h-auto" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Jalan -->
-                        <rect x="10" y="60" width="180" height="10" fill="#d1d5db"/>
-                        <rect x="10" y="120" width="180" height="10" fill="#d1d5db"/>
-                        <rect x="40" y="70" width="10" height="50" fill="#d1d5db"/>
-                        <rect x="95" y="70" width="10" height="50" fill="#d1d5db"/>
-                        <rect x="150" y="70" width="10" height="50" fill="#d1d5db"/>
-                        
-                        <!-- Bangunan Atas: Sekolah -->
-                        <rect x="60" y="10" width="80" height="40" fill="#f87171" stroke="#b91c1c" stroke-width="1"/>
-                        <text x="100" y="35" font-family="Inter, sans-serif" font-size="10" fill="#1f2937" text-anchor="middle">Sekolah</text>
-                        
-                        <!-- Bangunan Bawah -->
-                        <!-- Rumah Fira (Kiri) -->
-                        <rect x="10" y="80" width="50" height="30" fill="#60a5fa" stroke="#1d4ed8" stroke-width="1"/>
-                        <text x="35" y="100" font-family="Inter, sans-serif" font-size="8" fill="#1f2937" text-anchor="middle">Rumah Fira</text>
-
-                        <!-- Taman Bermain (Tengah) -->
-                        <rect x="75" y="80" width="50" height="30" fill="#34d399" stroke="#047857" stroke-width="1"/>
-                        <text x="100" y="100" font-family="Inter, sans-serif" font-size="8" fill="#1f2937" text-anchor="middle">Taman</text>
-
-                        <!-- Toko Roti (Kanan) -->
-                        <rect x="140" y="80" width="50" height="30" fill="#facc15" stroke="#a16207" stroke-width="1"/>
-                        <text x="165" y="100" font-family="Inter, sans-serif" font-size="8" fill="#1f2937" text-anchor="middle">Toko Roti</text>
-                    </svg>
-                </div>
-
-                <!-- Soal 8 (Baru) -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 8</p>
-                    <p class="text-gray-700">Berdasarkan denah, apa yang ada di depan Sekolah?</p>
-                    <textarea id="q9" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-                
-                <!-- Soal 9 (Baru) -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 9</p>
-                    <p class="text-gray-700">Berdasarkan denah, apa yang ada di sebelah kiri Taman?</p>
-                    <textarea id="q6" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 10 (Baru) -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 10</p>
-                    <p class="text-gray-700">Berdasarkan denah, Toko Roti terletak di sebelah kanan apa?</p>
-                    <textarea id="q10" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <button type="button" id="submit-button" class="submit-btn">
-                    Selesai!
-                </button>
-            </form>
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold">Latihan Soal Matematika</h1>
+                <p class="text-blue-100 text-sm md:text-base">Bab 3 & 4: Bangun Datar, Bangun Ruang, Pola</p>
+            </div>
+            <div class="text-right hidden md:block">
+                <p class="font-semibold">Kelas 2 SD</p>
+                <p class="text-xs text-blue-200">40 Soal</p>
+            </div>
         </div>
+    </header>
 
-        <!-- Bagian Hasil -->
-        <div id="result-section" class="hidden">
-            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
-            <p class="text-center text-gray-600 mb-8">Bagus sekali! Kamu sudah menyelesaikan semua soal. Sekarang, minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini ya.</p>
-
-            <!-- Hasil Soal 1 -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 1: Perhatikan gambar segitiga di atas. Ada berapa banyak sisi, sudut, dan titik sudutnya?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r1" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Memiliki 3 sisi, 3 sudut, dan 3 titik sudut.
-                </div>
-            </div>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 mt-6">
+        <form id="quizForm" class="space-y-6">
             
-            <!-- Hasil Soal 2 -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 2: Perhatikan gambar persegi di atas. Ada berapa banyak sisi, sudut, dan titik sudutnya?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r2" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Memiliki 4 sisi, 4 sudut, dan 4 titik sudut.
-                </div>
-            </div>
+            <!-- Container Soal -->
+            <div id="questions-container"></div>
 
-            <!-- Hasil Soal 3 -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 3: Bangun datar yang memiliki 5 sisi disebut apa?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r3" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Segi lima (atau Pentagon).
-                </div>
+            <!-- Tombol Submit -->
+            <div class="mt-10 mb-20 text-center">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transform transition hover:scale-105 text-lg flex items-center justify-center mx-auto gap-2">
+                    <span>✅ Selesai & Lihat Nilai</span>
+                </button>
             </div>
-            
-            <!-- Hasil Soal 4 -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 4: Bangun datar yang memiliki 6 sisi disebut apa?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r4" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Segi enam (atau Heksagon).
-                </div>
-            </div>
+        </form>
+    </main>
 
-            <!-- Hasil Soal 5 -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 5: Bangun ruang kubus memiliki berapa banyak sisi?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r5" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Memiliki 6 sisi.
+    <!-- Modal Hasil -->
+    <div id="resultModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto result-box">
+            <div class="p-6 md:p-8">
+                <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-full bg-blue-100 mb-4">
+                        <span class="text-4xl">📐</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Hasil Latihan</h2>
+                    <p class="text-gray-600">Hebat! Kamu telah menyelesaikan latihan Matematika.</p>
                 </div>
-            </div>
-            
-            <!-- Hasil Soal 6 -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 6: Bangun ruang balok memiliki berapa banyak rusuk?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r7" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Memiliki 12 rusuk.
-                </div>
-            </div>
 
-            <!-- Hasil Soal 7 -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 7: Apa nama bangun ruang yang bentuknya seperti bola?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r8" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Bola.
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-center">
+                        <p class="text-sm text-indigo-600 font-semibold uppercase tracking-wider">Skor Objektif</p>
+                        <p id="finalScore" class="text-4xl font-bold text-indigo-800">0</p>
+                        <p class="text-xs text-indigo-500 mt-1">(PG, Benar/Salah, Isian, PG Kompleks)</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200 text-center">
+                        <p class="text-sm text-yellow-600 font-semibold uppercase tracking-wider">Soal Uraian</p>
+                        <p class="text-lg font-bold text-yellow-800">Cek Manual</p>
+                        <p class="text-xs text-yellow-500 mt-1">(Minta orang tua/guru menilai)</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Hasil Soal 8 (Baru) -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 8: Berdasarkan denah, apa yang ada di depan Sekolah?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r9" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Taman.
+                <!-- Rincian -->
+                <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                    <h3 class="font-bold text-gray-700 mb-2">Rincian Jawaban:</h3>
+                    <div id="resultDetails" class="space-y-2 text-sm text-gray-600 max-h-40 overflow-y-auto">
+                        <!-- Detail will be injected here -->
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Hasil Soal 9 (Baru) -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 9: Berdasarkan denah, apa yang ada di sebelah kiri Taman?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r6" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Rumah Fira.
-                </div>
-            </div>
-            
-            <!-- Hasil Soal 10 (Baru) -->
-            <div class="result-card">
-                <p class="text-lg font-semibold mb-2">Soal 10: Berdasarkan denah, Toko Roti terletak di sebelah kanan apa?</p>
-                <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                <textarea id="r10" class="answer-textarea" readonly disabled></textarea>
-                <div class="correct-answer">
-                    Kunci Jawaban: Taman.
-                </div>
-            </div>
 
-            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
-                Ulangi Kuis
-            </button>
+                <div class="flex flex-col md:flex-row gap-3 justify-center">
+                    <button id="closeModalBtn" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition">
+                        Tutup & Lihat Pembahasan
+                    </button>
+                    <button onclick="location.reload()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition">
+                        Ulangi Latihan
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function() {
-            // Salin jawaban ke bagian hasil
-            document.getElementById('r1').value = document.getElementById('q1').value;
-            document.getElementById('r2').value = document.getElementById('q2').value;
-            document.getElementById('r3').value = document.getElementById('q3').value;
-            document.getElementById('r4').value = document.getElementById('q4').value;
-            document.getElementById('r5').value = document.getElementById('q5').value;
-            document.getElementById('r6').value = document.getElementById('q6').value;
-            document.getElementById('r7').value = document.getElementById('q7').value;
-            document.getElementById('r8').value = document.getElementById('q8').value;
-            document.getElementById('r9').value = document.getElementById('q9').value;
-            document.getElementById('r10').value = document.getElementById('q10').value;
+        // Koleksi SVG untuk Bangun Ruang
+        const svgs = {
+            kubus: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="30" width="60" height="60" fill="#a5b4fc" stroke="#4f46e5" stroke-width="2"/><polygon points="10,30 30,10 90,10 70,30" fill="#818cf8" stroke="#4f46e5" stroke-width="2"/><polygon points="90,10 90,70 70,90 70,30" fill="#6366f1" stroke="#4f46e5" stroke-width="2"/></svg>`,
+            balok: `<svg class="question-svg" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="40" width="80" height="50" fill="#fcd34d" stroke="#d97706" stroke-width="2"/><polygon points="10,40 30,20 110,20 90,40" fill="#fbbf24" stroke="#d97706" stroke-width="2"/><polygon points="110,20 110,70 90,90 90,40" fill="#f59e0b" stroke="#d97706" stroke-width="2"/></svg>`,
+            tabung: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="20" rx="30" ry="10" fill="#a7f3d0" stroke="#059669" stroke-width="2"/><rect x="20" y="20" width="60" height="60" fill="#6ee7b7" stroke="none"/><path d="M20,20 v60 a30,10 0 0 0 60,0 v-60" fill="#6ee7b7" stroke="#059669" stroke-width="2"/><line x1="20" y1="20" x2="20" y2="80" stroke="#059669" stroke-width="2"/><line x1="80" y1="20" x2="80" y2="80" stroke="#059669" stroke-width="2"/></svg>`,
+            kerucut: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50,10 L15,80 A35,10 0 0 0 85,80 Z" fill="#f9a8d4" stroke="#db2777" stroke-width="2"/><ellipse cx="50" cy="80" rx="35" ry="10" fill="#fbcfe8" stroke="#db2777" stroke-width="2"/></svg>`,
+            bola: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="#93c5fd" stroke="#2563eb" stroke-width="2"/><path d="M20,50 Q50,90 80,50" fill="none" stroke="#2563eb" stroke-width="1" stroke-dasharray="4"/><path d="M50,10 Q90,50 50,90" fill="none" stroke="#2563eb" stroke-width="1" stroke-dasharray="4"/></svg>`,
+            segitiga: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,10 90,90 10,90" fill="#fdba74" stroke="#ea580c" stroke-width="3"/></svg>`,
+            pola: `<div class="flex justify-center gap-2 mb-2"><svg width="30" height="30"><rect width="30" height="30" fill="blue"/></svg> <svg width="30" height="30"><circle cx="15" cy="15" r="15" fill="red"/></svg> <svg width="30" height="30"><rect width="30" height="30" fill="blue"/></svg> <span class="text-2xl font-bold">...</span></div>`
+        };
 
-            // Sembunyikan kuis, tampilkan hasil
-            document.getElementById('quiz-section').classList.add('hidden');
-            document.getElementById('result-section').classList.remove('hidden');
+        // Data Soal (40 Soal berdasarkan Kisi-kisi Matematika)
+        const questions = [
+            // --- BAGIAN 1: PILIHAN GANDA (1-12) ---
+            {
+                id: 1, type: 'pg', question: "Bangun datar di bawah ini yang memiliki 3 sisi dan 3 sudut adalah ...",
+                options: ["Persegi", "Segitiga", "Lingkaran", "Segi lima"], answer: "Segitiga",
+                svg: svgs.segitiga,
+                hint: "Lihat gambar, punya 3 sudut lancip."
+            },
+            {
+                id: 2, type: 'pg', question: "Bangun ruang pada gambar di bawah ini memiliki titik puncak. Bangun apakah ini?",
+                options: ["Kubus", "Balok", "Tabung", "Kerucut"], answer: "Kerucut",
+                svg: svgs.kerucut,
+                hint: "Bentuknya seperti topi ulang tahun atau tumpeng."
+            },
+            {
+                id: 3, type: 'pg', question: "Setengah bagian dari bilangan 20 adalah ...",
+                options: ["5", "10", "15", "20"], answer: "10",
+                hint: "20 dibagi 2."
+            },
+            {
+                id: 4, type: 'pg', question: "Benda di kelas yang biasanya berbentuk persegi panjang adalah ...",
+                options: ["Jam dinding", "Bola dunia", "Papan tulis", "Kapur"], answer: "Papan tulis",
+                hint: "Benda besar di depan kelas untuk menulis."
+            },
+            {
+                id: 5, type: 'pg', question: "Perhatikan pola berikut: Kotak - Lingkaran - Kotak. Apa bentuk selanjutnya?",
+                options: ["Persegi", "Lingkaran", "Segitiga", "Jajargenjang"], answer: "Lingkaran",
+                svg: svgs.pola,
+                hint: "Kembali ke bentuk kedua dalam pola."
+            },
+            {
+                id: 6, type: 'pg', question: "Bangun datar yang memiliki 5 sisi disebut ...",
+                options: ["Segi empat", "Segi lima", "Segi enam", "Segitiga"], answer: "Segi lima",
+                hint: "Sesuai jumlah sisinya (5)."
+            },
+            {
+                id: 7, type: 'pg', question: "Gambar di bawah adalah kubus. Kubus memiliki ... sisi yang sama luas.",
+                options: ["4", "5", "6", "8"], answer: "6",
+                svg: svgs.kubus,
+                hint: "Hitung sisi depan, belakang, atas, bawah, kiri, kanan."
+            },
+            {
+                id: 8, type: 'pg', question: "Jika Ani duduk di depan Budi, maka Budi duduk di ... Ani.",
+                options: ["Samping", "Belakang", "Kanan", "Kiri"], answer: "Belakang",
+                hint: "Lawan kata depan."
+            },
+            {
+                id: 9, type: 'pg', question: "Bangun ruang seperti gambar bola di bawah ini tidak memiliki ...",
+                options: ["Sisi lengkung", "Volume", "Titik sudut", "Bentuk"], answer: "Titik sudut",
+                svg: svgs.bola,
+                hint: "Bola itu bulat mulus."
+            },
+            {
+                id: 10, type: 'pg', question: "Sebuah pizza dipotong menjadi 2 bagian sama besar. Satu bagian disebut ...",
+                options: ["Satu per tiga", "Satu per empat", "Setengah", "Satu utuh"], answer: "Setengah",
+                hint: "1 dibagi 2."
+            },
+            {
+                id: 11, type: 'pg', question: "Bangun ruang pada gambar di bawah ini disebut ...",
+                options: ["Kubus", "Balok", "Tabung", "Bola"], answer: "Tabung",
+                svg: svgs.tabung,
+                hint: "Bentuknya seperti kaleng atau drum."
+            },
+            {
+                id: 12, type: 'pg', question: "Jumlah titik sudut pada bangun segi empat adalah ...",
+                options: ["3", "4", "5", "6"], answer: "4",
+                hint: "Sama dengan jumlah sisinya."
+            },
+
+            // --- BAGIAN 2: BENAR / SALAH (13-22) ---
+            {
+                id: 13, type: 'tf', question: "Persegi memiliki 4 sisi yang sama panjang.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Semua sisinya kembar."
+            },
+            {
+                id: 14, type: 'tf', question: "Tabung memiliki 3 sisi (alas, tutup, selimut).",
+                options: ["Benar", "Salah"], answer: "Benar",
+                svg: svgs.tabung,
+                hint: "Alas dan tutupnya berbentuk lingkaran."
+            },
+            {
+                id: 15, type: 'tf', question: "Setengah dari 16 adalah 4.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "16 dibagi 2 adalah 8."
+            },
+            {
+                id: 16, type: 'tf', question: "Bola memiliki banyak titik sudut.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                svg: svgs.bola,
+                hint: "Bola tidak punya sudut."
+            },
+            {
+                id: 17, type: 'tf', question: "Posisi 'kiri' adalah lawan dari posisi 'kanan'.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Arah tangan."
+            },
+            {
+                id: 18, type: 'tf', question: "Balok (gambar di bawah) memiliki 12 rusuk.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                svg: svgs.balok,
+                hint: "Coba hitung garis-garis pembentuknya."
+            },
+            {
+                id: 19, type: 'tf', question: "Pola: Merah - Kuning - Merah - Kuning. Selanjutnya adalah Hijau.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Harusnya kembali ke Merah."
+            },
+            {
+                id: 20, type: 'tf', question: "Segi enam memiliki 6 titik sudut.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Jumlah sudut segi banyak sama dengan jumlah sisinya."
+            },
+            {
+                id: 21, type: 'tf', question: "Kerucut tidak memiliki titik puncak.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                svg: svgs.kerucut,
+                hint: "Kerucut punya 1 titik tajam di atas."
+            },
+            {
+                id: 22, type: 'tf', question: "Kubus memiliki sisi yang bentuknya persegi panjang.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                svg: svgs.kubus,
+                hint: "Kubus sisinya berbentuk PERSEGI (kotak)."
+            },
+
+            // --- BAGIAN 3: ISIAN SINGKAT (23-30) ---
+            {
+                id: 23, type: 'isian', question: "Bangun datar yang memiliki 3 sisi disebut ...",
+                answer: "segitiga", hint: "Awalan S."
+            },
+            {
+                id: 24, type: 'isian', question: "Nama bangun ruang pada gambar di bawah ini adalah ...",
+                answer: "tabung", svg: svgs.tabung, hint: "Punya alas dan tutup lingkaran."
+            },
+            {
+                id: 25, type: 'isian', question: "Satu buah semangka dipotong menjadi 2 bagian sama besar. Setiap bagian nilainya ... (tulis angka pecahan)",
+                answer: "1/2", hint: "Satu per dua."
+            },
+            {
+                id: 26, type: 'isian', question: "Jumlah sisi pada bangun persegi panjang adalah ...",
+                answer: "4", hint: "Hitung garis tepinya."
+            },
+            {
+                id: 27, type: 'isian', question: "Bangun ruang yang semua sisinya berbentuk persegi seperti dadu adalah ...",
+                answer: "kubus", svg: svgs.kubus, hint: "Kotak sempurna."
+            },
+            {
+                id: 28, type: 'isian', question: "Lawan dari posisi 'atas' adalah ...",
+                answer: "bawah", hint: "Kebalikannya."
+            },
+            {
+                id: 29, type: 'isian', question: "Lanjutan pola: Kotak, Bulat, Kotak, ...",
+                answer: "bulat", hint: "Bentuk lingkaran."
+            },
+            {
+                id: 30, type: 'isian', question: "Gambar di bawah ini adalah bangun ruang bernama ...",
+                answer: "balok", svg: svgs.balok, hint: "Mirip kubus tapi panjang."
+            },
+
+            // --- BAGIAN 4: PILIHAN GANDA KOMPLEKS (31-35) ---
+            {
+                id: 31, type: 'pg_kompleks', question: "Pilih 2 bangun yang termasuk bangun datar:",
+                options: ["Segitiga", "Bola", "Persegi", "Tabung"], answer: ["Segitiga", "Persegi"],
+                hint: "Bangun yang pipih/rata."
+            },
+            {
+                id: 32, type: 'pg_kompleks', question: "Pilih 2 benda yang berbentuk bola:",
+                options: ["Kelereng", "Buku", "Semangka", "Kotak pensil"], answer: ["Kelereng", "Semangka"],
+                hint: "Benda bulat."
+            },
+            {
+                id: 33, type: 'pg_kompleks', question: "Pilih 2 ciri-ciri dari kubus (lihat gambar):",
+                options: ["Memiliki 6 sisi", "Memiliki 3 sisi", "Memiliki 12 rusuk", "Tidak punya sudut"], answer: ["Memiliki 6 sisi", "Memiliki 12 rusuk"],
+                svg: svgs.kubus,
+                hint: "Ciri bangun ruang kotak sempurna."
+            },
+            {
+                id: 34, type: 'pg_kompleks', question: "Pilih 2 kata yang menunjukkan posisi benda:",
+                options: ["Kanan", "Merah", "Belakang", "Segitiga"], answer: ["Kanan", "Belakang"],
+                hint: "Arah letak benda."
+            },
+            {
+                id: 35, type: 'pg_kompleks', question: "Pilih 2 bangun datar yang memiliki sudut:",
+                options: ["Lingkaran", "Segitiga", "Persegi Panjang", "Oval"], answer: ["Segitiga", "Persegi Panjang"],
+                hint: "Bangun yang punya pojokan tajam."
+            },
+
+            // --- BAGIAN 5: URAIAN (36-40) ---
+            {
+                id: 36, type: 'uraian', question: "Sebutkan 3 ciri-ciri dari bangun ruang Balok!",
+                answer: "Memiliki 12 rusuk, 6 sisi, 8 titik sudut, sisi yang berhadapan sama besar.", 
+                hint: "Mirip kubus tapi lebih panjang."
+            },
+            {
+                id: 37, type: 'uraian', question: "Gambarkan atau tuliskan pola bentuk: Segitiga - Lingkaran - Persegi. Apa bentuk selanjutnya?",
+                answer: "Segitiga. (Polanya: Segitiga, Lingkaran, Persegi, ...)", 
+                hint: "Kembali ke awal."
+            },
+            {
+                id: 38, type: 'uraian', question: "Jika Andi duduk di belakang Budi, dan Cici duduk di depan Budi. Siapakah yang duduk paling depan?",
+                answer: "Cici. (Urutannya: Cici - Budi - Andi)", 
+                hint: "Urutkan dari depan."
+            },
+            {
+                id: 39, type: 'uraian', question: "Ibu membagi 1 kue bolu menjadi 4 potong sama besar. Adik memakan 1 potong. Berapa pecahan kue yang dimakan adik?",
+                answer: "Seperempat atau 1/4.", 
+                hint: "1 bagian dari 4."
+            },
+            {
+                id: 40, type: 'uraian', question: "Sebutkan 3 benda di rumahmu yang berbentuk tabung!",
+                answer: "Gelas, Botol minum, Kaleng susu, Toples kerupuk, Pipa.", 
+                hint: "Benda dengan alas lingkaran."
+            }
+        ];
+
+        // Render Questions
+        const container = document.getElementById('questions-container');
+
+        questions.forEach((q, index) => {
+            const card = document.createElement('div');
+            card.className = "quiz-card bg-white rounded-xl shadow-md p-6 border border-blue-100 relative overflow-hidden";
             
-            // Gulir ke atas
-            window.scrollTo(0, 0);
+            // Badge Tipe Soal
+            let typeLabel = "";
+            let typeColor = "bg-gray-200 text-gray-700";
+            if(q.type === 'pg') { typeLabel = "Pilihan Ganda"; typeColor = "bg-blue-100 text-blue-700"; }
+            if(q.type === 'tf') { typeLabel = "Benar / Salah"; typeColor = "bg-green-100 text-green-700"; }
+            if(q.type === 'isian') { typeLabel = "Isian Singkat"; typeColor = "bg-yellow-100 text-yellow-700"; }
+            if(q.type === 'pg_kompleks') { typeLabel = "Pilihan Ganda Kompleks"; typeColor = "bg-purple-100 text-purple-700"; }
+            if(q.type === 'uraian') { typeLabel = "Uraian"; typeColor = "bg-orange-100 text-orange-700"; }
+
+            let svgContent = q.svg ? `<div class="flex justify-center my-4">${q.svg}</div>` : '';
+
+            let questionHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold">${index + 1}</span>
+                        <span class="text-xs font-semibold px-2 py-1 rounded ${typeColor}">${typeLabel}</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    ${svgContent}
+                    <p class="text-lg text-gray-800 font-medium">${q.question}</p>
+                    ${q.type === 'pg_kompleks' ? '<p class="text-xs text-purple-600 mt-1">*Pilih 2 jawaban yang benar</p>' : ''}
+                </div>
+            `;
+
+            // Render Options based on Type
+            let inputHTML = '';
+            
+            if (q.type === 'pg' || q.type === 'tf') {
+                inputHTML += `<div class="space-y-3">`;
+                q.options.forEach(opt => {
+                    inputHTML += `
+                        <label class="option-container flex items-center p-3 rounded-lg border border-gray-200 hover:border-blue-400">
+                            <input type="radio" name="q${q.id}" value="${opt}" class="option-input form-radio h-5 w-5 text-blue-600 focus:ring-blue-500">
+                            <span class="option-label ml-3 text-gray-700">${opt}</span>
+                        </label>
+                    `;
+                });
+                inputHTML += `</div>`;
+            } 
+            else if (q.type === 'pg_kompleks') {
+                inputHTML += `<div class="space-y-3">`;
+                q.options.forEach(opt => {
+                    inputHTML += `
+                        <label class="option-container flex items-center p-3 rounded-lg border border-gray-200 hover:border-blue-400">
+                            <input type="checkbox" name="q${q.id}" value="${opt}" class="option-input form-checkbox h-5 w-5 text-blue-600 focus:ring-blue-500 rounded">
+                            <span class="option-label ml-3 text-gray-700">${opt}</span>
+                        </label>
+                    `;
+                });
+                inputHTML += `</div>`;
+            }
+            else if (q.type === 'isian') {
+                inputHTML += `
+                    <input type="text" name="q${q.id}" placeholder="Ketik jawaban singkat..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50">
+                `;
+            }
+            else if (q.type === 'uraian') {
+                inputHTML += `
+                    <textarea name="q${q.id}" rows="3" placeholder="Tulis jawaban lengkapmu di sini..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50"></textarea>
+                `;
+            }
+
+            // Hint & Feedback Area (Hidden initially)
+            inputHTML += `
+                <div id="feedback-${q.id}" class="mt-4 hidden p-4 rounded-lg bg-gray-100 text-sm">
+                    <p class="font-bold mb-1">Kunci Jawaban:</p>
+                    <p class="text-blue-700 font-semibold">${Array.isArray(q.answer) ? q.answer.join(", ") : q.answer}</p>
+                    <p class="text-gray-500 text-xs mt-2 italic">Hint: ${q.hint}</p>
+                </div>
+            `;
+
+            card.innerHTML = questionHTML + inputHTML;
+            container.appendChild(card);
         });
 
-        document.getElementById('restart-button').addEventListener('click', function() {
-            // Kosongkan semua jawaban
-            const textareas = document.querySelectorAll('.answer-textarea');
-            textareas.forEach(textarea => textarea.value = '');
-
-            // Tampilkan kuis, sembunyikan hasil
-            document.getElementById('quiz-section').classList.remove('hidden');
-            document.getElementById('result-section').classList.add('hidden');
+        // Handle Submission
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Gulir ke atas
-            window.scrollTo(0, 0);
+            let score = 0;
+            let totalObjective = 0;
+            const formData = new FormData(e.target);
+            const resultDetails = document.getElementById('resultDetails');
+            resultDetails.innerHTML = ""; // Clear prev results
+
+            questions.forEach(q => {
+                const feedbackEl = document.getElementById(`feedback-${q.id}`);
+                feedbackEl.classList.remove('hidden'); // Show answers
+                
+                let isCorrect = false;
+                let userAnswer = "";
+
+                // Logic Penilaian
+                if (q.type === 'pg' || q.type === 'tf') {
+                    totalObjective++;
+                    userAnswer = formData.get(`q${q.id}`);
+                    if (userAnswer === q.answer) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-blue-100', 'border', 'border-blue-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                } 
+                else if (q.type === 'pg_kompleks') {
+                    totalObjective++;
+                    // Get all checked values
+                    const checked = formData.getAll(`q${q.id}`);
+                    userAnswer = checked.join(", ");
+                    
+                    // Simple array comparison (must match exactly)
+                    // Sort both arrays to compare content
+                    const sortedUser = checked.sort().toString();
+                    const sortedAns = q.answer.sort().toString();
+                    
+                    if (sortedUser === sortedAns && checked.length > 0) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-blue-100', 'border', 'border-blue-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                }
+                else if (q.type === 'isian') {
+                    totalObjective++;
+                    userAnswer = formData.get(`q${q.id}`)?.trim() || "";
+                    if (userAnswer.toLowerCase() === q.answer.toLowerCase()) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-blue-100', 'border', 'border-blue-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                }
+                else if (q.type === 'uraian') {
+                    // Uraian tidak dinilai otomatis
+                    userAnswer = formData.get(`q${q.id}`);
+                    feedbackEl.classList.add('bg-yellow-50', 'border', 'border-yellow-200');
+                    feedbackEl.innerHTML += `<p class='text-yellow-600 font-bold mt-2'>*Cek jawabanmu dengan kunci jawaban di atas.</p>`;
+                }
+
+                // Add simple summary to modal
+                if(q.type !== 'uraian') {
+                    const icon = isCorrect ? "✅" : "❌";
+                    const item = document.createElement('div');
+                    item.innerHTML = `<span>${icon} No. ${q.id}</span>`;
+                    resultDetails.appendChild(item);
+                }
+            });
+
+            // Calculate Score (Scale 0-100 for objective parts)
+            let finalScore = 0;
+            if (totalObjective > 0) {
+                finalScore = Math.round((score / totalObjective) * 100);
+            }
+            
+            // Show Modal
+            document.getElementById('finalScore').textContent = finalScore;
+            document.getElementById('resultModal').classList.remove('hidden');
+        });
+
+        // Close Modal
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('resultModal').classList.add('hidden');
+            // Scroll to top to review
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
-
 </body>
 </html>
