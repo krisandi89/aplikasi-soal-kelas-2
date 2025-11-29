@@ -3,371 +3,525 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Siroh Nabawiyah - Kelas 2</title>
+    <title>Latihan Soal Sirah Nabawiyah - Hijrah ke Madinah</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
+            font-family: 'Nunito', sans-serif;
+            background-color: #fcf9f2; /* Cream/Sand background */
         }
-        .quiz-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
         }
-        .question-card {
-            background-color: #fafafa;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        .quiz-card {
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
         }
-        .answer-textarea {
-            width: 100%;
-            min-height: 80px;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            padding: 0.75rem;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
+        .quiz-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .answer-textarea:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-            outline: none;
+        .quiz-card.answered {
+            border-left-color: #d97706; /* Amber color */
         }
-        .submit-btn {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ffffff;
-            background-color: #3b82f6;
-            border: none;
-            border-radius: 0.5rem;
+        .option-container {
             cursor: pointer;
             transition: background-color 0.2s;
         }
-        .submit-btn:hover {
-            background-color: #2563eb;
+        .option-container:hover {
+            background-color: #fef3c7;
         }
-        .result-card {
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #e5e7eb;
+        .option-input:checked + .option-label {
+            color: #b45309;
+            font-weight: bold;
         }
-        .correct-answer {
-            background-color: #d1fae5;
-            border: 1px solid #34d399;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            font-weight: 600;
+        .result-box {
+            animation: slideIn 0.5s ease-out;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            color: #3b82f6;
-            text-decoration: none;
+        .question-svg {
+            display: block;
+            margin: 10px auto;
+            max-width: 150px;
+            height: auto;
         }
-        .back-link:hover {
-            text-decoration: underline;
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
+<body class="bg-orange-50 min-h-screen pb-20">
 
-    <div class="quiz-container">
-        
-        <!-- Bagian Kuis -->
-        <div id="quiz-section">
-            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
-            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Kuis Siroh Nabawiyah</h1>
-            <p class="text-center text-gray-600 mb-8">Jawablah 20 pertanyaan di bawah ini.</p>
-
-            <form id="quiz-form">
-                <!-- Soal 1 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 1</p>
-                    <p class="text-gray-700">Apa sebutan lain untuk Baiat Aqabah Kedua?</p>
-                    <textarea id="q1" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 2 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 2</p>
-                    <p class="text-gray-700">Berapa banyak pemimpin yang ditunjuk Nabi Muhammad SAW setelah Baiat Aqabah Kedua?</p>
-                    <textarea id="q2" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 3 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 3</p>
-                    <p class="text-gray-700">Apa rencana jahat yang dibuat kaum Quraisy terhadap Nabi Muhammad SAW?</p>
-                    <textarea id="q3" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 4 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 4</p>
-                    <p class="text-gray-700">Siapa yang memberitahu Nabi Muhammad SAW tentang rencana jahat kaum Quraisy?</p>
-                    <textarea id="q4" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 5 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 5</p>
-                    <p class="text-gray-700">Siapa sahabat yang diminta untuk menemani Nabi Muhammad SAW hijrah?</p>
-                    <textarea id="q5" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 6 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 6</p>
-                    <p class="text-gray-700">Siapa yang menggantikan Nabi Muhammad SAW tidur di tempat tidurnya saat rumah beliau dikepung?</p>
-                    <textarea id="q6" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 7 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 7</p>
-                    <p class="text-gray-700">Apa yang dipakai Ali bin Abi Thalib saat tidur di tempat tidur Nabi?</p>
-                    <textarea id="q7" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 8 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 8</p>
-                    <p class="text-gray-700">Bagaimana cara Nabi Muhammad SAW keluar dari rumahnya yang sudah dikepung kaum Quraisy?</p>
-                    <textarea id="q8" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 9 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 9</p>
-                    <p class="text-gray-700">Ke mana Nabi Muhammad SAW dan Abu Bakar pergi bersembunyi setelah keluar dari rumah?</p>
-                    <textarea id="q9" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 10 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 10</p>
-                    <p class="text-gray-700">Di gua apakah Nabi Muhammad SAW dan Abu Bakar bersembunyi?</p>
-                    <textarea id="q10" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 11 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 11</p>
-                    <p class="text-gray-700">Pada tanggal berapakah Nabi Muhammad SAW tiba di Quba?</p>
-                    <textarea id="q11" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 12 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 12</p>
-                    <p class="text-gray-700">Apa nama masjid pertama yang dibangun oleh Nabi Muhammad SAW?</p>
-                    <textarea id="q12" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 13 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 13</p>
-                    <p class="text-gray-700">Berapa lama Nabi Muhammad SAW berada di Quba?</p>
-                    <textarea id="q13" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 14 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 14</p>
-                    <p class="text-gray-700">Apa nama kota Yastrib setelah Nabi Muhammad SAW tiba?</p>
-                    <textarea id="q14" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 15 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 15</p>
-                    <p class="text-gray-700">Bagaimana cara Nabi Muhammad SAW memutuskan di mana beliau akan tinggal di Madinah?</p>
-                    <textarea id="q15" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 16 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 16</p>
-                    <p class="text-gray-700">Apa nama masjid yang dibangun Nabi Muhammad SAW di Madinah?</p>
-                    <textarea id="q16" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 17 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 17</p>
-                    <p class="text-gray-700">Dari siapa tanah untuk Masjid Nabawi dibeli?</p>
-                    <textarea id="q17" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 18 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 18</p>
-                    <p class="text-gray-700">Sebutkan nama istri dan putri Nabi yang menyusul hijrah ke Madinah.</p>
-                    <textarea id="q18" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 19 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 19</p>
-                    <p class="text-gray-700">Siapa sahabat yang jatuh sakit demam ketika baru tiba di Madinah?</p>
-                    <textarea id="q19" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <!-- Soal 20 -->
-                <div class="question-card">
-                    <p class="text-lg font-semibold mb-2">Soal 20</p>
-                    <p class="text-gray-700">Selain untuk salat, apa kegunaan Masjid Nabawi pada zaman itu?</p>
-                    <textarea id="q20" class="answer-textarea" placeholder="Tulis jawabanmu di sini..."></textarea>
-                </div>
-
-                <button type="button" id="submit-button" class="submit-btn">
-                    Selesai! Lihat Kunci Jawaban
-                </button>
-            </form>
+    <!-- Header -->
+    <header class="bg-amber-600 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold">Latihan Soal Sirah</h1>
+                <p class="text-amber-100 text-sm md:text-base">Materi: Hijrah Nabi Muhammad SAW ke Madinah</p>
+            </div>
+            <div class="text-right hidden md:block">
+                <p class="font-semibold">Kelas 2 SD</p>
+                <p class="text-xs text-amber-200">40 Soal</p>
+            </div>
         </div>
+    </header>
 
-        <!-- Bagian Hasil -->
-        <div id="result-section" class="hidden">
-            <a href="index.html" class="back-link">&larr; Kembali ke Daftar Pelajaran</a>
-            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Kunci Jawaban</h2>
-            <p class="text-center text-gray-600 mb-8">Kerja bagus! Minta orang tuamu untuk memeriksa jawabanmu dengan kunci jawaban di bawah ini.</p>
-
-            <!-- Loop Hasil 1-20 -->
-            <script>
-                // Data Kunci Jawaban
-                const correctAnswers = {
-                    r1: "Baiat Aqabah Kubra.",
-                    r2: "12 (Dua belas) orang pemimpin.",
-                    r3: "Membunuh Nabi Muhammad SAW.",
-                    r4: "Malaikat Jibril.",
-                    r5: "Abu Bakar Ash-Shiddiq.",
-                    r6: "Ali bin Abi Thalib.",
-                    r7: "Mantel hijau yang biasa dipakai Nabi Muhammad SAW.",
-                    r8: "Menaburkan pasir ke kepala orang-orang Quraisy (dengan izin Allah).",
-                    r9: "Pergi ke rumah Abu Bakar, lalu bersembunyi.",
-                    r10: "Gua Tsaur (Cave of Thaur).",
-                    r11: "Tanggal 8 Rabiulawal.",
-                    r12: "Masjid Quba.",
-                    r13: "Empat hari.",
-                    r14: "Madinatur Rasul (Kota Rasul) atau Madinah.",
-                    r15: "Beliau membiarkan untanya berjalan, dan akan singgah di tempat untanya berhenti.",
-                    r16: "Masjid Nabawi.",
-                    r17: "Dari dua anak yatim, Sahal dan Suhail.",
-                    r18: "Istri: Saudah. Putri: Fatimah dan Ummu Kultsum.",
-                    r19: "Bilal dan Abu Bakar.",
-                    r20: "Tempat bermusyawarah dan menjalankan pemerintahan."
-                };
-
-                // Data Pertanyaan (BARU DITAMBAHKAN)
-                const questions = {
-                    q1: "Apa sebutan lain untuk Baiat Aqabah Kedua?",
-                    q2: "Berapa banyak pemimpin yang ditunjuk Nabi Muhammad SAW setelah Baiat Aqabah Kedua?",
-                    q3: "Apa rencana jahat yang dibuat kaum Quraisy terhadap Nabi Muhammad SAW?",
-                    q4: "Siapa yang memberitahu Nabi Muhammad SAW tentang rencana jahat kaum Quraisy?",
-                    q5: "Siapa sahabat yang diminta untuk menemani Nabi Muhammad SAW hijrah?",
-                    q6: "Siapa yang menggantikan Nabi Muhammad SAW tidur di tempat tidurnya saat rumah beliau dikepung?",
-                    q7: "Apa yang dipakai Ali bin Abi Thalib saat tidur di tempat tidur Nabi?",
-                    q8: "Bagaimana cara Nabi Muhammad SAW keluar dari rumahnya yang sudah dikepung kaum Quraisy?",
-                    q9: "Ke mana Nabi Muhammad SAW dan Abu Bakar pergi bersembunyi setelah keluar dari rumah?",
-                    q10: "Di gua apakah Nabi Muhammad SAW dan Abu Bakar bersembunyi?",
-                    q11: "Pada tanggal berapakah Nabi Muhammad SAW tiba di Quba?",
-                    q12: "Apa nama masjid pertama yang dibangun oleh Nabi Muhammad SAW?",
-                    q13: "Berapa lama Nabi Muhammad SAW berada di Quba?",
-                    q14: "Apa nama kota Yastrib setelah Nabi Muhammad SAW tiba?",
-                    q15: "Bagaimana cara Nabi Muhammad SAW memutuskan di mana beliau akan tinggal di Madinah?",
-                    q16: "Apa nama masjid yang dibangun Nabi Muhammad SAW di Madinah?",
-                    q17: "Dari siapa tanah untuk Masjid Nabawi dibeli?",
-                    q18: "Sebutkan nama istri dan putri Nabi yang menyusul hijrah ke Madinah.",
-                    q19: "Siapa sahabat yang jatuh sakit demam ketika baru tiba di Madinah?",
-                    q20: "Selain untuk salat, apa kegunaan Masjid Nabawi pada zaman itu?"
-                };
-
-                // Generate 20 result cards
-                for (let i = 1; i <= 20; i++) {
-                    document.write(`
-                        <div class="result-card">
-                            <p class="text-lg font-semibold mb-2">Soal ${i}</p>
-                            <p class="text-gray-700 mb-3">${questions['q'+i]}</p> <!-- BARIS INI DIPERBAIKI -->
-                            <p class="text-gray-700 font-medium">Jawabanmu:</p>
-                            <textarea id="r${i}" class="answer-textarea" readonly disabled style="background-color: #f9fafb;"></textarea>
-                            <div class="correct-answer">
-                                Kunci Jawaban: ${correctAnswers['r'+i]}
-                            </div>
-                        </div>
-                    `);
-                }
-            </script>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 mt-6">
+        <form id="quizForm" class="space-y-6">
             
-            <button type="button" id="restart-button" class="submit-btn" style="background-color: #10b981; margin-top: 1rem;">
-                Ulangi Kuis
-            </button>
+            <!-- Container Soal -->
+            <div id="questions-container"></div>
+
+            <!-- Tombol Submit -->
+            <div class="mt-10 mb-20 text-center">
+                <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transform transition hover:scale-105 text-lg flex items-center justify-center mx-auto gap-2">
+                    <span>✅ Selesai & Lihat Nilai</span>
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Modal Hasil -->
+    <div id="resultModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto result-box">
+            <div class="p-6 md:p-8">
+                <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-full bg-amber-100 mb-4">
+                        <span class="text-4xl">🌙</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Hasil Latihan</h2>
+                    <p class="text-gray-600">Masya Allah! Kamu telah menyelesaikan latihan.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-center">
+                        <p class="text-sm text-blue-600 font-semibold uppercase tracking-wider">Skor Objektif</p>
+                        <p id="finalScore" class="text-4xl font-bold text-blue-800">0</p>
+                        <p class="text-xs text-blue-500 mt-1">(PG, Benar/Salah, Isian, PG Kompleks)</p>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-200 text-center">
+                        <p class="text-sm text-orange-600 font-semibold uppercase tracking-wider">Soal Uraian</p>
+                        <p class="text-lg font-bold text-orange-800">Cek Manual</p>
+                        <p class="text-xs text-orange-500 mt-1">(Minta orang tua/guru menilai)</p>
+                    </div>
+                </div>
+
+                <!-- Rincian -->
+                <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                    <h3 class="font-bold text-gray-700 mb-2">Rincian Jawaban:</h3>
+                    <div id="resultDetails" class="space-y-2 text-sm text-gray-600 max-h-40 overflow-y-auto">
+                        <!-- Detail will be injected here -->
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-3 justify-center">
+                    <button id="closeModalBtn" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition">
+                        Tutup & Lihat Pembahasan
+                    </button>
+                    <button onclick="location.reload()" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition">
+                        Ulangi Latihan
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function() {
-            // Salin 20 jawaban ke bagian hasil
-            for (let i = 1; i <= 20; i++) {
-                document.getElementById('r' + i).value = document.getElementById('q' + i).value;
+        // Koleksi SVG Sederhana untuk Ilustrasi (Simbolik)
+        const svgs = {
+            masjid: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20,60 H80 V90 H20 Z" fill="#fcd34d"/><path d="M20,60 Q50,10 80,60" fill="#fbbf24"/><rect x="40" y="70" width="20" height="20" fill="#78350f"/><circle cx="50" cy="30" r="5" fill="#f59e0b"/><path d="M48,20 L50,15 L52,20 M50,15 L50,25" stroke="#f59e0b" stroke-width="2"/></svg>`,
+            unta: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20,50 Q30,40 40,50 T60,50 T80,40 V80 H20 Z" fill="#d97706"/><circle cx="80" cy="35" r="10" fill="#d97706"/><rect x="25" y="80" width="5" height="15" fill="#92400e"/><rect x="75" y="80" width="5" height="15" fill="#92400e"/></svg>`,
+            gua: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10,90 Q50,10 90,90 Z" fill="#57534e"/><circle cx="50" cy="70" r="15" fill="#292524"/></svg>`,
+            pohon: `<svg class="question-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="45" y="60" width="10" height="30" fill="#78350f"/><circle cx="50" cy="40" r="25" fill="#16a34a"/></svg>`
+        };
+
+        // Data Soal (40 Soal berdasarkan Kisi-kisi Sirah Nabawiyah)
+        const questions = [
+            // --- BAGIAN 1: PILIHAN GANDA (1-12) ---
+            {
+                id: 1, type: 'pg', question: "Baiat Aqabah Kedua dikenal juga dengan sebutan Baiat Aqabah ...",
+                options: ["Sugra", "Kubra", "Wusta", "Pertama"], answer: "Kubra",
+                hint: "Artinya 'Besar'."
+            },
+            {
+                id: 2, type: 'pg', question: "Berapa jumlah pemimpin yang ditunjuk Nabi Muhammad SAW pada saat Baiat Aqabah Kedua?",
+                options: ["10 orang", "11 orang", "12 orang", "13 orang"], answer: "12 orang",
+                hint: "Sesuai isi kisi-kisi halaman 1."
+            },
+            {
+                id: 3, type: 'pg', question: "Sahabat yang menemani Nabi Muhammad SAW hijrah ke Madinah adalah ...",
+                options: ["Umar bin Khattab", "Ali bin Abi Thalib", "Abu Bakar Ash-Shiddiq", "Usman bin Affan"], answer: "Abu Bakar Ash-Shiddiq",
+                hint: "Sahabat terdekat Nabi."
+            },
+            {
+                id: 4, type: 'pg', question: "Siapa yang menggantikan Nabi Muhammad SAW tidur di tempat tidurnya saat rumah dikepung?",
+                options: ["Zaid bin Haritsah", "Abu Bakar", "Ali bin Abi Thalib", "Bilal"], answer: "Ali bin Abi Thalib",
+                hint: "Sepupu Nabi yang pemberani."
+            },
+            {
+                id: 5, type: 'pg', question: "Tempat persembunyian Nabi Muhammad SAW dan Abu Bakar saat dikejar kaum Quraisy adalah ...",
+                options: ["Gua Hira", "Gua Tsaur", "Bukit Tursina", "Gua Kahfi"], answer: "Gua Tsaur",
+                svg: svgs.gua,
+                hint: "Gua tempat laba-laba membuat sarang."
+            },
+            {
+                id: 6, type: 'pg', question: "Masjid pertama yang dibangun oleh Nabi Muhammad SAW adalah Masjid ...",
+                options: ["Nabawi", "Haram", "Quba", "Aqsa"], answer: "Quba",
+                svg: svgs.masjid,
+                hint: "Dibangun saat Nabi singgah sebelum sampai ke tengah kota Madinah."
+            },
+            {
+                id: 7, type: 'pg', question: "Setelah tiba di Yastrib, Nabi mengubah nama kota tersebut menjadi ...",
+                options: ["Mekkah", "Madinah", "Taif", "Mesir"], answer: "Madinah",
+                hint: "Dikenal juga sebagai Madinatur Rasul."
+            },
+            {
+                id: 8, type: 'pg', question: "Tanah untuk pembangunan Masjid Nabawi dibeli dari dua anak yatim bernama ...",
+                options: ["Hasan dan Husain", "Sahal dan Suhail", "Musa dan Harun", "Zaid dan Umar"], answer: "Sahal dan Suhail",
+                hint: "Nama mereka mirip."
+            },
+            {
+                id: 9, type: 'pg', question: "Orang yang pertama kali mengumandangkan azan adalah ...",
+                options: ["Abu Bakar", "Umar bin Khattab", "Bilal bin Rabah", "Ali bin Abi Thalib"], answer: "Bilal bin Rabah",
+                hint: "Sahabat yang memiliki suara merdu."
+            },
+            {
+                id: 10, type: 'pg', question: "Berapa lama Nabi Muhammad SAW tinggal di Quba?",
+                options: ["1 hari", "2 hari", "3 hari", "4 hari"], answer: "4 hari",
+                hint: "Kurang dari seminggu."
+            },
+            {
+                id: 11, type: 'pg', question: "Saat hijrah, Nabi Muhammad SAW keluar rumah dengan menaburkan ... ke arah pemuda Quraisy.",
+                options: ["Air", "Bunga", "Pasir/Debu", "Batu"], answer: "Pasir/Debu",
+                hint: "Agar penglihatan mereka tertutup."
+            },
+            {
+                id: 12, type: 'pg', question: "Penduduk Madinah yang menolong kaum Muhajirin disebut kaum ...",
+                options: ["Quraisy", "Anshar", "Badui", "Yahudi"], answer: "Anshar",
+                hint: "Artinya 'Penolong'."
+            },
+
+            // --- BAGIAN 2: BENAR / SALAH (13-22) ---
+            {
+                id: 13, type: 'tf', question: "Ali bin Abi Thalib tidur menggunakan mantel hijau milik Nabi.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Untuk mengelabui kaum Quraisy."
+            },
+            {
+                id: 14, type: 'tf', question: "Nabi Muhammad SAW tiba di Quba pada tanggal 12 Rabiulawal.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Tiba di Quba tanggal 8 Rabiulawal (Halaman 4)."
+            },
+            {
+                id: 15, type: 'tf', question: "Unta Nabi Muhammad SAW berhenti di depan rumah Abu Ayyub Al-Ansari (Bani Najjar).",
+                options: ["Benar", "Salah"], answer: "Benar",
+                svg: svgs.unta,
+                hint: "Tempat Nabi menginap pertama kali di Madinah."
+            },
+            {
+                id: 16, type: 'tf', question: "Kaum Muhajirin adalah penduduk asli Madinah.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Muhajirin adalah pendatang dari Mekkah."
+            },
+            {
+                id: 17, type: 'tf', question: "Masjid Nabawi pada zaman dahulu juga digunakan sebagai tempat pemerintahan.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Masjid adalah pusat kegiatan umat."
+            },
+            {
+                id: 18, type: 'tf', question: "Malaikat Jibril memberitahu Nabi tentang rencana jahat kaum Quraisy.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Wahyu turun untuk memerintahkan hijrah."
+            },
+            {
+                id: 19, type: 'tf', question: "Nabi Muhammad SAW bersembunyi di Gua Tsaur sendirian.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Beliau bersama Abu Bakar."
+            },
+            {
+                id: 20, type: 'tf', question: "Madinatur Rasul artinya Kota Rasul.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Nama baru untuk Yastrib."
+            },
+            {
+                id: 21, type: 'tf', question: "Sahabat yang sakit demam saat baru tiba di Madinah adalah Ali dan Usman.",
+                options: ["Benar", "Salah"], answer: "Salah",
+                hint: "Yang sakit adalah Abu Bakar dan Bilal."
+            },
+            {
+                id: 22, type: 'tf', question: "Kaum Quraisy berencana untuk membunuh Nabi Muhammad SAW.",
+                options: ["Benar", "Salah"], answer: "Benar",
+                hint: "Mereka mengepung rumah Nabi."
+            },
+
+            // --- BAGIAN 3: ISIAN SINGKAT (23-30) ---
+            {
+                id: 23, type: 'isian', question: "Sebelum bernama Madinah, kota tersebut bernama ...",
+                answer: "yastrib", hint: "Nama lama kota Madinah."
+            },
+            {
+                id: 24, type: 'isian', question: "Kaum yang hijrah (pindah) dari Mekkah ke Madinah disebut kaum ...",
+                answer: "muhajirin", hint: "Orang yang berhijrah."
+            },
+            {
+                id: 25, type: 'isian', question: "Masjid kedua yang dibangun oleh Nabi Muhammad SAW adalah Masjid ...",
+                answer: "nabawi", svg: svgs.masjid, hint: "Masjid di pusat kota Madinah."
+            },
+            {
+                id: 26, type: 'isian', question: "Putri Nabi Muhammad SAW yang menyusul hijrah ke Madinah adalah Fatimah dan ...",
+                answer: "ummu kultsum", hint: "Saudara perempuan Fatimah."
+            },
+            {
+                id: 27, type: 'isian', question: "Peristiwa hijrah terjadi dari kota Mekkah ke kota ...",
+                answer: "madinah", hint: "Tujuan hijrah."
+            },
+            {
+                id: 28, type: 'isian', question: "Nabi Muhammad SAW memulai dakwah di Madinah pada bulan ...",
+                answer: "rabiulawal", hint: "Bulan kedatangan Nabi."
+            },
+            {
+                id: 29, type: 'isian', question: "Selain tempat ibadah, Masjid Nabawi juga digunakan untuk tempat ...",
+                answer: "musyawarah", hint: "Berkumpul membicarakan urusan umat."
+            },
+            {
+                id: 30, type: 'isian', question: "Sahabat yang menemani Nabi di Gua Tsaur adalah ...",
+                answer: "abu bakar", hint: "Ayah dari Aisyah."
+            },
+
+            // --- BAGIAN 4: PILIHAN GANDA KOMPLEKS (31-35) ---
+            {
+                id: 31, type: 'pg_kompleks', question: "Pilih 2 orang yang menyusul Nabi hijrah ke Madinah:",
+                options: ["Saudah (Istri Nabi)", "Fatimah (Putri Nabi)", "Abu Jahal", "Raja Abrahah"], answer: ["Saudah (Istri Nabi)", "Fatimah (Putri Nabi)"],
+                hint: "Keluarga Nabi."
+            },
+            {
+                id: 32, type: 'pg_kompleks', question: "Pilih 2 fungsi masjid pada masa Rasulullah:",
+                options: ["Tempat salat", "Tempat bermusyawarah", "Tempat berdagang", "Tempat bermain"], answer: ["Tempat salat", "Tempat bermusyawarah"],
+                hint: "Pusat kegiatan umat."
+            },
+            {
+                id: 33, type: 'pg_kompleks', question: "Pilih 2 sahabat yang sakit demam saat awal di Madinah:",
+                options: ["Bilal", "Umar", "Abu Bakar", "Ali"], answer: ["Bilal", "Abu Bakar"],
+                hint: "Mereka tidak biasa dengan udara Madinah."
+            },
+            {
+                id: 34, type: 'pg_kompleks', question: "Pilih 2 masjid yang dibangun Nabi:",
+                options: ["Masjid Quba", "Masjid Istiqlal", "Masjid Nabawi", "Masjid Raya"], answer: ["Masjid Quba", "Masjid Nabawi"],
+                svg: svgs.masjid,
+                hint: "Masjid bersejarah di Madinah."
+            },
+            {
+                id: 35, type: 'pg_kompleks', question: "Pilih 2 fakta tentang Ali bin Abi Thalib saat hijrah:",
+                options: ["Tidur di kasur Nabi", "Memakai mantel hijau", "Pergi ke Gua Tsaur", "Membangun masjid"], answer: ["Tidur di kasur Nabi", "Memakai mantel hijau"],
+                hint: "Menggantikan peran Nabi di rumah."
+            },
+
+            // --- BAGIAN 5: URAIAN (36-40) ---
+            {
+                id: 36, type: 'uraian', question: "Bagaimana cara Nabi Muhammad SAW menentukan lokasi pembangunan Masjid Nabawi?",
+                answer: "Nabi membiarkan untanya berjalan sendiri, di mana unta itu berhenti dan duduk, di situlah masjid dibangun.", 
+                svg: svgs.unta,
+                hint: "Menggunakan hewan tunggangan."
+            },
+            {
+                id: 37, type: 'uraian', question: "Apa peran Ali bin Abi Thalib saat malam hijrah?",
+                answer: "Menggantikan Nabi tidur di tempat tidurnya dan memakai selimut/mantel Nabi untuk mengecoh kaum Quraisy.", 
+                hint: "Tidur di kasur."
+            },
+            {
+                id: 38, type: 'uraian', question: "Jelaskan perbedaan antara Kaum Muhajirin dan Kaum Anshar!",
+                answer: "Muhajirin adalah orang Mekkah yang hijrah ke Madinah. Anshar adalah penduduk asli Madinah yang menolong Muhajirin.", 
+                hint: "Pendatang vs Penolong."
+            },
+            {
+                id: 39, type: 'uraian', question: "Sebutkan nama dua anak yatim pemilik tanah Masjid Nabawi!",
+                answer: "Sahal dan Suhail.", 
+                hint: "Nama yang mirip."
+            },
+            {
+                id: 40, type: 'uraian', question: "Apa yang dilakukan Nabi Muhammad SAW saat pertama kali tiba di Quba?",
+                answer: "Membangun Masjid Quba dan salat bersama kaum Anshar.", 
+                hint: "Membangun tempat ibadah."
+            }
+        ];
+
+        // Render Questions
+        const container = document.getElementById('questions-container');
+
+        questions.forEach((q, index) => {
+            const card = document.createElement('div');
+            card.className = "quiz-card bg-white rounded-xl shadow-md p-6 border border-amber-100 relative overflow-hidden";
+            
+            // Badge Tipe Soal
+            let typeLabel = "";
+            let typeColor = "bg-gray-200 text-gray-700";
+            if(q.type === 'pg') { typeLabel = "Pilihan Ganda"; typeColor = "bg-blue-100 text-blue-700"; }
+            if(q.type === 'tf') { typeLabel = "Benar / Salah"; typeColor = "bg-green-100 text-green-700"; }
+            if(q.type === 'isian') { typeLabel = "Isian Singkat"; typeColor = "bg-yellow-100 text-yellow-700"; }
+            if(q.type === 'pg_kompleks') { typeLabel = "Pilihan Ganda Kompleks"; typeColor = "bg-purple-100 text-purple-700"; }
+            if(q.type === 'uraian') { typeLabel = "Uraian"; typeColor = "bg-orange-100 text-orange-700"; }
+
+            let svgContent = q.svg ? `<div class="flex justify-center my-4">${q.svg}</div>` : '';
+
+            let questionHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-amber-600 text-white font-bold">${index + 1}</span>
+                        <span class="text-xs font-semibold px-2 py-1 rounded ${typeColor}">${typeLabel}</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    ${svgContent}
+                    <p class="text-lg text-gray-800 font-medium">${q.question}</p>
+                    ${q.type === 'pg_kompleks' ? '<p class="text-xs text-purple-600 mt-1">*Pilih 2 jawaban yang benar</p>' : ''}
+                </div>
+            `;
+
+            // Render Options based on Type
+            let inputHTML = '';
+            
+            if (q.type === 'pg' || q.type === 'tf') {
+                inputHTML += `<div class="space-y-3">`;
+                q.options.forEach(opt => {
+                    inputHTML += `
+                        <label class="option-container flex items-center p-3 rounded-lg border border-gray-200 hover:border-amber-400">
+                            <input type="radio" name="q${q.id}" value="${opt}" class="option-input form-radio h-5 w-5 text-amber-600 focus:ring-amber-500">
+                            <span class="option-label ml-3 text-gray-700">${opt}</span>
+                        </label>
+                    `;
+                });
+                inputHTML += `</div>`;
+            } 
+            else if (q.type === 'pg_kompleks') {
+                inputHTML += `<div class="space-y-3">`;
+                q.options.forEach(opt => {
+                    inputHTML += `
+                        <label class="option-container flex items-center p-3 rounded-lg border border-gray-200 hover:border-amber-400">
+                            <input type="checkbox" name="q${q.id}" value="${opt}" class="option-input form-checkbox h-5 w-5 text-amber-600 focus:ring-amber-500 rounded">
+                            <span class="option-label ml-3 text-gray-700">${opt}</span>
+                        </label>
+                    `;
+                });
+                inputHTML += `</div>`;
+            }
+            else if (q.type === 'isian') {
+                inputHTML += `
+                    <input type="text" name="q${q.id}" placeholder="Ketik jawaban singkat..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-gray-50">
+                `;
+            }
+            else if (q.type === 'uraian') {
+                inputHTML += `
+                    <textarea name="q${q.id}" rows="3" placeholder="Tulis jawaban lengkapmu di sini..." class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-gray-50"></textarea>
+                `;
             }
 
-            // Tampilkan hasil, tapi JANGAN sembunyikan kuis
-            // document.getElementById('quiz-section').classList.add('hidden'); // <-- Baris ini dihapus/dikomentari
-            document.getElementById('result-section').classList.remove('hidden');
-            
-            // Nonaktifkan semua textarea di bagian kuis
-            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
-            quizTextareas.forEach(textarea => {
-                textarea.disabled = true;
-                textarea.style.backgroundColor = '#f9fafb'; // Ubah warna latar
-            });
-            
-            // Sembunyikan tombol submit
-            document.getElementById('submit-button').classList.add('hidden');
+            // Hint & Feedback Area (Hidden initially)
+            inputHTML += `
+                <div id="feedback-${q.id}" class="mt-4 hidden p-4 rounded-lg bg-gray-100 text-sm">
+                    <p class="font-bold mb-1">Kunci Jawaban:</p>
+                    <p class="text-amber-700 font-semibold">${Array.isArray(q.answer) ? q.answer.join(", ") : q.answer}</p>
+                    <p class="text-gray-500 text-xs mt-2 italic">Hint: ${q.hint}</p>
+                </div>
+            `;
 
-            // Gulir ke bagian hasil
-            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+            card.innerHTML = questionHTML + inputHTML;
+            container.appendChild(card);
         });
 
-        document.getElementById('restart-button').addEventListener('click', function() {
-            // Kosongkan semua jawaban
-            for (let i = 1; i <= 20; i++) {
-                document.getElementById('q' + i).value = '';
-                document.getElementById('r' + i).value = '';
-            }
+        // Handle Submission
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let score = 0;
+            let totalObjective = 0;
+            const formData = new FormData(e.target);
+            const resultDetails = document.getElementById('resultDetails');
+            resultDetails.innerHTML = ""; // Clear prev results
 
-            // Sembunyikan hasil
-            // document.getElementById('quiz-section').classList.remove('hidden'); // <-- Baris ini dihapus/dikomentari
-            document.getElementById('result-section').classList.add('hidden');
+            questions.forEach(q => {
+                const feedbackEl = document.getElementById(`feedback-${q.id}`);
+                feedbackEl.classList.remove('hidden'); // Show answers
+                
+                let isCorrect = false;
+                let userAnswer = "";
 
-            // Aktifkan kembali semua textarea di bagian kuis
-            const quizTextareas = document.querySelectorAll('#quiz-section .answer-textarea');
-            quizTextareas.forEach(textarea => {
-                textarea.disabled = false;
-                textarea.style.backgroundColor = '#ffffff'; // Kembalikan warna
+                // Logic Penilaian
+                if (q.type === 'pg' || q.type === 'tf') {
+                    totalObjective++;
+                    userAnswer = formData.get(`q${q.id}`);
+                    if (userAnswer === q.answer) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-green-100', 'border', 'border-green-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                } 
+                else if (q.type === 'pg_kompleks') {
+                    totalObjective++;
+                    // Get all checked values
+                    const checked = formData.getAll(`q${q.id}`);
+                    userAnswer = checked.join(", ");
+                    
+                    // Simple array comparison (must match exactly)
+                    // Sort both arrays to compare content
+                    const sortedUser = checked.sort().toString();
+                    const sortedAns = q.answer.sort().toString();
+                    
+                    if (sortedUser === sortedAns && checked.length > 0) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-green-100', 'border', 'border-green-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                }
+                else if (q.type === 'isian') {
+                    totalObjective++;
+                    userAnswer = formData.get(`q${q.id}`)?.trim() || "";
+                    if (userAnswer.toLowerCase() === q.answer.toLowerCase()) {
+                        score++;
+                        isCorrect = true;
+                        feedbackEl.classList.add('bg-green-100', 'border', 'border-green-300');
+                    } else {
+                        feedbackEl.classList.add('bg-red-50', 'border', 'border-red-200');
+                    }
+                }
+                else if (q.type === 'uraian') {
+                    // Uraian tidak dinilai otomatis
+                    userAnswer = formData.get(`q${q.id}`);
+                    feedbackEl.classList.add('bg-orange-50', 'border', 'border-orange-200');
+                    feedbackEl.innerHTML += `<p class='text-orange-600 font-bold mt-2'>*Cek jawabanmu dengan kunci jawaban di atas.</p>`;
+                }
+
+                // Add simple summary to modal
+                if(q.type !== 'uraian') {
+                    const icon = isCorrect ? "✅" : "❌";
+                    const item = document.createElement('div');
+                    item.innerHTML = `<span>${icon} No. ${q.id}</span>`;
+                    resultDetails.appendChild(item);
+                }
             });
 
-            // Tampilkan kembali tombol submit
-            document.getElementById('submit-button').classList.remove('hidden');
+            // Calculate Score (Scale 0-100 for objective parts)
+            let finalScore = 0;
+            if (totalObjective > 0) {
+                finalScore = Math.round((score / totalObjective) * 100);
+            }
             
-            // Gulir ke atas
-            window.scrollTo(0, 0);
+            // Show Modal
+            document.getElementById('finalScore').textContent = finalScore;
+            document.getElementById('resultModal').classList.remove('hidden');
+        });
+
+        // Close Modal
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('resultModal').classList.add('hidden');
+            // Scroll to top to review
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
-
 </body>
 </html>
